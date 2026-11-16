@@ -11,29 +11,30 @@ import { Role } from '../../core/models/models';
   standalone: true,
   imports: [CommonModule, FormsModule, RouterModule],
   template: `
-    <div class="section-py" style="background: linear-gradient(135deg, var(--slate-100), var(--primary-50)); min-height: 85vh; display: flex; align-items: center;">
-      <div class="app-container" style="max-width: 620px; width: 100%;">
+    <div class="section-py" style="min-height: 85vh; display: flex; align-items: center; position: relative;">
+      <div class="ambient-glow-top"></div>
+      <div class="app-container" style="max-width: 650px; width: 100%;">
         
-        <div class="card" style="box-shadow: var(--shadow-xl); border: 1px solid var(--slate-200);">
-          <div class="card-body" style="padding: 2.25rem;">
+        <div class="card" style="box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9), var(--glow-cyan);">
+          <div class="card-body" style="padding: 2.75rem 2.5rem;">
             
-            <div style="text-align: center; margin-bottom: 2rem;">
-              <h1 style="font-size: 1.75rem; margin-bottom: 0.4rem;">Créer votre compte FELC</h1>
-              <p style="color: var(--slate-600); font-size: 0.9rem;">
-                Rejoignez la communauté d'apprentissage pratique et d'emploi
+            <div style="text-align: center; margin-bottom: 2.25rem;">
+              <h1 style="font-size: 2.15rem; margin-bottom: 0.5rem; color: #ffffff;">Créer votre profil FELC</h1>
+              <p style="color: #94a3b8; font-size: 0.95rem;">
+                Rejoignez l'écosystème d'apprentissage pratique et d'insertion professionnelle
               </p>
             </div>
 
             <form (ngSubmit)="onSubmit()">
               
-              <!-- Role Selector Tabs -->
+              <!-- Role Selector Cyber Tabs -->
               <div class="form-group">
-                <label class="form-label">Vous êtes :</label>
-                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem;">
+                <label class="form-label">Sélectionnez votre rôle :</label>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.65rem;">
                   <button 
                     type="button" 
                     (click)="selectedRole = 'APPRENANT'"
-                    [class.btn-primary]="selectedRole === 'APPRENANT'"
+                    [class.btn-cyber]="selectedRole === 'APPRENANT'"
                     [class.btn-outline]="selectedRole !== 'APPRENANT'"
                     class="btn"
                   >
@@ -42,7 +43,7 @@ import { Role } from '../../core/models/models';
                   <button 
                     type="button" 
                     (click)="selectedRole = 'FORMATEUR'"
-                    [class.btn-primary]="selectedRole === 'FORMATEUR'"
+                    [class.btn-cyber]="selectedRole === 'FORMATEUR'"
                     [class.btn-outline]="selectedRole !== 'FORMATEUR'"
                     class="btn"
                   >
@@ -51,7 +52,7 @@ import { Role } from '../../core/models/models';
                   <button 
                     type="button" 
                     (click)="selectedRole = 'ENTREPRISE'"
-                    [class.btn-primary]="selectedRole === 'ENTREPRISE'"
+                    [class.btn-cyber]="selectedRole === 'ENTREPRISE'"
                     [class.btn-outline]="selectedRole !== 'ENTREPRISE'"
                     class="btn"
                   >
@@ -91,9 +92,9 @@ import { Role } from '../../core/models/models';
               </div>
 
               <!-- Extra fields if Entreprise -->
-              <div *ngIf="selectedRole === 'ENTREPRISE'" style="background: var(--amber-50); border: 1px solid var(--amber-200); border-radius: var(--radius-lg); padding: 1.25rem; margin-bottom: 1.5rem;">
-                <div style="font-weight: 700; color: var(--amber-800); margin-bottom: 0.75rem; font-size: 0.9rem;">
-                  🏢 Informations de l'Entreprise
+              <div *ngIf="selectedRole === 'ENTREPRISE'" style="background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: var(--radius-xl); padding: 1.5rem; margin-bottom: 2rem;">
+                <div style="font-weight: 800; color: #fde68a; margin-bottom: 1rem; font-size: 0.95rem; font-family: var(--font-display);">
+                  🏢 Informations de l'Entreprise Recruteuse
                 </div>
                 <div class="form-group">
                   <label class="form-label">Nom de l'Entreprise</label>
@@ -112,18 +113,18 @@ import { Role } from '../../core/models/models';
               <button 
                 type="submit" 
                 [disabled]="loading()" 
-                class="btn btn-primary" 
-                style="width: 100%; padding: 0.75rem; font-size: 1rem; margin-top: 0.5rem;"
+                class="btn btn-cyber" 
+                style="width: 100%; padding: 0.85rem; font-size: 1.05rem; margin-top: 1rem;"
               >
                 <span *ngIf="loading()" class="spinner"></span>
-                <span *ngIf="!loading()">Créer mon compte</span>
+                <span *ngIf="!loading()">Créer mon compte ➔</span>
               </button>
 
             </form>
 
-            <div style="text-align: center; margin-top: 1.5rem; font-size: 0.875rem; color: var(--slate-600);">
+            <div style="text-align: center; margin-top: 2rem; font-size: 0.9rem; color: #94a3b8;">
               Vous avez déjà un compte ? 
-              <a routerLink="/auth/login" style="font-weight: 700; color: var(--primary-600);">
+              <a routerLink="/auth/login" style="font-weight: 700; color: var(--neon-cyan);">
                 Se connecter
               </a>
             </div>

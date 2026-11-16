@@ -18,38 +18,39 @@ import {
   standalone: true,
   imports: [CommonModule, FormsModule, RouterModule],
   template: `
-    <div *ngIf="formation()" class="section-py" style="background-color: var(--slate-50); min-height: 85vh;">
+    <div *ngIf="formation()" class="section-py" style="min-height: 85vh; position: relative;">
+      <div class="ambient-glow-top"></div>
       <div class="app-container">
         
-        <!-- Header Hero -->
-        <div class="card" style="margin-bottom: 2rem; border-left: 6px solid var(--primary-600); box-shadow: var(--shadow-md);">
-          <div class="card-body" style="padding: 2.25rem;">
+        <!-- Header Hero Card -->
+        <div class="card" style="margin-bottom: 2.5rem; border-left: 6px solid var(--neon-cyan); box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.8), var(--glow-cyan);">
+          <div class="card-body" style="padding: 2.5rem;">
             
-            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.75rem;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 0.75rem;">
               <div style="display: flex; gap: 0.5rem; align-items: center;">
                 <span class="badge badge-primary">{{ formation()?.domaineNom }}</span>
                 <span class="badge badge-success">Niveau {{ formation()?.niveau }}</span>
               </div>
-              <div style="font-size: 0.875rem; color: var(--slate-500);">
-                Formateur : <strong>{{ formation()?.formateurPrenom }} {{ formation()?.formateurNom }}</strong>
+              <div style="font-size: 0.9rem; color: #94a3b8;">
+                Formateur : <strong style="color: #ffffff;">{{ formation()?.formateurPrenom }} {{ formation()?.formateurNom }}</strong>
               </div>
             </div>
 
-            <h1 style="font-size: 2.15rem; margin-bottom: 0.75rem; color: var(--slate-900);">
+            <h1 style="font-size: 2.5rem; margin-bottom: 1rem; color: #ffffff;">
               {{ formation()?.titre }}
             </h1>
 
-            <p style="color: var(--slate-600); font-size: 1.05rem; line-height: 1.6; margin-bottom: 1.75rem; max-width: 850px;">
+            <p style="color: #cbd5e1; font-size: 1.1rem; line-height: 1.7; margin-bottom: 2rem; max-width: 880px;">
               {{ formation()?.description }}
             </p>
 
             <!-- Enrollment / Progress Bar -->
-            <div *ngIf="inscription(); else notEnrolledTpl" style="background: var(--slate-100); border-radius: var(--radius-xl); padding: 1.25rem; border: 1px solid var(--slate-200);">
-              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
-                <span style="font-weight: 700; font-size: 0.95rem; color: var(--slate-800);">
-                  🚀 Votre Progression dans cette formation
+            <div *ngIf="inscription(); else notEnrolledTpl" style="background: rgba(255, 255, 255, 0.03); border-radius: var(--radius-xl); padding: 1.5rem; border: 1px solid rgba(255, 255, 255, 0.08);">
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem;">
+                <span style="font-weight: 700; font-size: 1rem; color: #ffffff; font-family: var(--font-display); display: flex; align-items: center; gap: 0.5rem;">
+                  <span class="pulsing-dot"></span> Progression Pédagogique
                 </span>
-                <span style="font-weight: 800; font-size: 1.1rem; color: var(--primary-600);">
+                <span style="font-weight: 800; font-size: 1.3rem; color: var(--neon-cyan); font-family: var(--font-display);">
                   {{ inscription()?.progression }}%
                 </span>
               </div>
@@ -58,16 +59,16 @@ import {
               </div>
 
               <!-- Finished Banner if 100% -->
-              <div *ngIf="inscription()?.progression === 100" style="margin-top: 1rem; background: var(--accent-100); border: 1px solid var(--accent-300); border-radius: var(--radius-lg); padding: 0.85rem 1.25rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem;">
-                <div style="display: flex; align-items: center; gap: 0.6rem;">
-                  <span style="font-size: 1.5rem;">🏆</span>
+              <div *ngIf="inscription()?.progression === 100" style="margin-top: 1.5rem; background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.4); border-radius: var(--radius-xl); padding: 1.25rem 1.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; box-shadow: 0 0 25px rgba(16, 185, 129, 0.2);">
+                <div style="display: flex; align-items: center; gap: 0.85rem;">
+                  <span style="font-size: 2rem;">🏆</span>
                   <div>
-                    <strong style="color: var(--accent-800);">Félicitations ! Formation terminée avec succès !</strong>
-                    <div style="font-size: 0.85rem; color: var(--accent-700);">Votre certificat officiel FELC a été généré.</div>
+                    <strong style="color: #6ee7b7; font-size: 1.1rem; font-family: var(--font-display);">Félicitations ! Formation complétée à 100%</strong>
+                    <div style="font-size: 0.9rem; color: #cbd5e1;">Votre certificat officiel FELC a été validé et enregistré.</div>
                   </div>
                 </div>
                 <a routerLink="/mes-certificats" class="btn btn-accent btn-sm">
-                  Voir mon Certificat →
+                  Voir mon Certificat ➔
                 </a>
               </div>
             </div>
@@ -78,13 +79,14 @@ import {
                   *ngIf="auth.userRole() === 'APPRENANT'" 
                   (click)="sInscrire()" 
                   [disabled]="inscribing()" 
-                  class="btn btn-accent btn-lg"
+                  class="btn btn-cyber btn-lg"
+                  style="box-shadow: 0 0 30px rgba(6, 182, 212, 0.4);"
                 >
                   <span *ngIf="inscribing()" class="spinner"></span>
-                  <span *ngIf="!inscribing()">🎓 S'inscrire à cette formation (Gratuit)</span>
+                  <span *ngIf="!inscribing()">⚡ S'inscrire à cette formation (Gratuit)</span>
                 </button>
-                <div *ngIf="!auth.isLoggedIn()" style="font-size: 0.9rem; color: var(--slate-600);">
-                  <a routerLink="/auth/login" style="font-weight: 700;">Connectez-vous</a> pour vous inscrire et soumettre vos projets.
+                <div *ngIf="!auth.isLoggedIn()" style="font-size: 0.95rem; color: #94a3b8;">
+                  <a routerLink="/auth/login" style="font-weight: 700; color: var(--neon-cyan);">Connectez-vous</a> pour démarrer les projets et soumettre votre code.
                 </div>
               </div>
             </ng-template>
@@ -92,37 +94,37 @@ import {
           </div>
         </div>
 
-        <!-- Main Content: Tabs for Modules and Exercices -->
-        <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem; border-bottom: 2px solid var(--slate-200);">
+        <!-- Navigation Tabs -->
+        <div style="display: flex; gap: 1rem; margin-bottom: 2rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
           <button 
             (click)="activeTab = 'exercices'"
-            [style.color]="activeTab === 'exercices' ? 'var(--primary-600)' : 'var(--slate-500)'"
-            [style.border-bottom]="activeTab === 'exercices' ? '3px solid var(--primary-600)' : 'none'"
-            style="background: none; border: none; font-weight: 700; font-size: 1.05rem; padding: 0.75rem 1rem; cursor: pointer; display: flex; align-items: center; gap: 0.5rem;"
+            [style.color]="activeTab === 'exercices' ? 'var(--neon-cyan)' : '#94a3b8'"
+            [style.border-bottom]="activeTab === 'exercices' ? '2px solid var(--neon-cyan)' : 'none'"
+            style="background: none; border: none; font-weight: 700; font-size: 1.1rem; font-family: var(--font-display); padding: 0.85rem 1.25rem; cursor: pointer; display: flex; align-items: center; gap: 0.6rem;"
           >
             <span>💻</span> Exercices & Projets Pratiques ({{ formation()?.exercices?.length || 0 }})
           </button>
           <button 
             (click)="activeTab = 'modules'"
-            [style.color]="activeTab === 'modules' ? 'var(--primary-600)' : 'var(--slate-500)'"
-            [style.border-bottom]="activeTab === 'modules' ? '3px solid var(--primary-600)' : 'none'"
-            style="background: none; border: none; font-weight: 700; font-size: 1.05rem; padding: 0.75rem 1rem; cursor: pointer; display: flex; align-items: center; gap: 0.5rem;"
+            [style.color]="activeTab === 'modules' ? 'var(--neon-cyan)' : '#94a3b8'"
+            [style.border-bottom]="activeTab === 'modules' ? '2px solid var(--neon-cyan)' : 'none'"
+            style="background: none; border: none; font-weight: 700; font-size: 1.1rem; font-family: var(--font-display); padding: 0.85rem 1.25rem; cursor: pointer; display: flex; align-items: center; gap: 0.6rem;"
           >
             <span>📖</span> Modules de Cours ({{ formation()?.modules?.length || 0 }})
           </button>
         </div>
 
         <!-- Tab 1: Exercices & Soumissions -->
-        <div *ngIf="activeTab === 'exercices'" style="display: flex; flex-direction: column; gap: 1.5rem;">
+        <div *ngIf="activeTab === 'exercices'" style="display: flex; flex-direction: column; gap: 1.75rem;">
           
-          <div *ngFor="let exo of formation()?.exercices; let i = index" class="card" [style.border-left]="exo.projetFinal ? '6px solid var(--amber-500)' : '1px solid var(--slate-200)'">
+          <div *ngFor="let exo of formation()?.exercices; let i = index" class="card" [style.border-left]="exo.projetFinal ? '5px solid var(--neon-amber)' : '1px solid rgba(255, 255, 255, 0.08)'">
             <div class="card-body">
               
-              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.5rem;">
-                <div style="display: flex; align-items: center; gap: 0.5rem;">
-                  <span style="font-weight: 800; color: var(--slate-400);">#{{ exo.ordre }}</span>
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;">
+                <div style="display: flex; align-items: center; gap: 0.6rem;">
+                  <span style="font-weight: 800; font-family: var(--font-display); color: #64748b;">#{{ exo.ordre }}</span>
                   <span *ngIf="exo.projetFinal" class="badge badge-warning">🏆 Projet Final Certifiant</span>
-                  <span *ngIf="!exo.projetFinal" class="badge badge-slate">Exercice pratique</span>
+                  <span *ngIf="!exo.projetFinal" class="badge badge-slate">Exercice Pratique</span>
                 </div>
 
                 <!-- Soumission status badge -->
@@ -133,24 +135,24 @@ import {
                 </div>
               </div>
 
-              <h3 style="font-size: 1.3rem; margin-bottom: 0.6rem; color: var(--slate-900);">
+              <h3 style="font-size: 1.4rem; margin-bottom: 0.85rem; color: #ffffff;">
                 {{ exo.titre }}
               </h3>
 
-              <!-- Consignes -->
-              <div style="background: var(--slate-50); border: 1px solid var(--slate-200); border-radius: var(--radius-lg); padding: 1.25rem; margin-bottom: 1rem;">
-                <div style="font-size: 0.8rem; font-weight: 700; color: var(--slate-500); text-transform: uppercase; margin-bottom: 0.35rem;">
+              <!-- Consignes & Critères Box -->
+              <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: var(--radius-xl); padding: 1.4rem; margin-bottom: 1.25rem;">
+                <div style="font-size: 0.75rem; font-weight: 800; color: #64748b; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.4rem;">
                   Consigne :
                 </div>
-                <div style="color: var(--slate-800); font-size: 0.95rem; line-height: 1.6; white-space: pre-wrap;">
+                <div style="color: #cbd5e1; font-size: 0.95rem; line-height: 1.6; white-space: pre-wrap;">
                   {{ exo.consigne }}
                 </div>
 
-                <div style="margin-top: 1rem; border-top: 1px dashed var(--slate-200); padding-top: 0.75rem;">
-                  <div style="font-size: 0.8rem; font-weight: 700; color: var(--slate-500); text-transform: uppercase; margin-bottom: 0.35rem;">
-                    Critères de validation :
+                <div style="margin-top: 1.25rem; border-top: 1px dashed rgba(255, 255, 255, 0.1); padding-top: 1rem;">
+                  <div style="font-size: 0.75rem; font-weight: 800; color: #64748b; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.4rem;">
+                    Critères d'évaluation de code :
                   </div>
-                  <div style="color: var(--slate-700); font-size: 0.9rem; line-height: 1.5; white-space: pre-wrap;">
+                  <div style="color: #94a3b8; font-size: 0.9rem; line-height: 1.6; white-space: pre-wrap;">
                     {{ exo.criteres }}
                   </div>
                 </div>
@@ -160,36 +162,35 @@ import {
               <div *ngIf="inscription()">
                 
                 <!-- If already submitted -->
-                <div *ngIf="getSoumission(exo.id) as sub" style="background: #ffffff; border: 1px solid var(--slate-200); border-radius: var(--radius-lg); padding: 1.25rem; margin-top: 1rem;">
-                  <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 0.75rem;">
+                <div *ngIf="getSoumission(exo.id) as sub" style="background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: var(--radius-xl); padding: 1.4rem; margin-top: 1.25rem;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;">
                     <div>
-                      <span style="font-size: 0.8rem; color: var(--slate-500);">Dépôt soumis :</span>
-                      <a [href]="sub.lienDepot" target="_blank" rel="noopener" style="font-weight: 700; margin-left: 0.5rem; word-break: break-all;">
-                        🔗 {{ sub.lienDepot }}
+                      <span style="font-size: 0.8rem; color: #64748b;">Dépôt analysé :</span>
+                      <a [href]="sub.lienDepot" target="_blank" rel="noopener" style="font-weight: 700; margin-left: 0.5rem; word-break: break-all; color: var(--neon-cyan);">
+                        🔗 {{ sub.lienDepot }} ↗
                       </a>
                     </div>
 
-                    <!-- AI Correction Button -->
+                    <!-- Cyber AI Correction Button -->
                     <button 
                       *ngIf="sub.statut !== 'VALIDEE'" 
                       (click)="corrigerAvecIa(sub.id)" 
                       [disabled]="correctingIaId() === sub.id" 
-                      class="btn btn-accent btn-sm"
-                      style="box-shadow: var(--shadow-emerald-glow);"
+                      class="btn btn-cyber btn-sm"
                     >
                       <span *ngIf="correctingIaId() === sub.id" class="spinner"></span>
-                      <span *ngIf="correctingIaId() !== sub.id">✨ Corriger immédiatement avec l'IA</span>
+                      <span *ngIf="correctingIaId() !== sub.id">✨ Corriger Immédiatement avec l'IA</span>
                     </button>
                   </div>
 
                   <!-- Feedback section -->
-                  <div *ngIf="sub.feedback" style="background: var(--slate-50); border-left: 4px solid var(--primary-500); padding: 0.85rem 1rem; border-radius: var(--radius-md); font-size: 0.9rem; margin-top: 0.5rem;">
-                    <strong>Feedback d'évaluation (Note : {{ sub.note }}/100) :</strong>
-                    <div style="color: var(--slate-700); margin-top: 0.3rem; white-space: pre-wrap;">{{ sub.feedback }}</div>
+                  <div *ngIf="sub.feedback" style="background: rgba(255, 255, 255, 0.03); border-left: 4px solid var(--neon-indigo); padding: 1rem 1.25rem; border-radius: var(--radius-md); font-size: 0.925rem; margin-top: 0.75rem;">
+                    <strong style="color: #ffffff;">Feedback d'évaluation de code (Note : {{ sub.note }}/100) :</strong>
+                    <div style="color: #cbd5e1; margin-top: 0.4rem; white-space: pre-wrap; line-height: 1.6;">{{ sub.feedback }}</div>
                   </div>
 
                   <!-- Re-submit if A_REVOIR -->
-                  <div *ngIf="sub.statut === 'A_REVOIR'" style="margin-top: 1rem;">
+                  <div *ngIf="sub.statut === 'A_REVOIR'" style="margin-top: 1.25rem;">
                     <button (click)="openSubmitModal(exo)" class="btn btn-outline btn-sm">
                       🔄 Resoumettre une version corrigée
                     </button>
@@ -211,16 +212,16 @@ import {
         </div>
 
         <!-- Tab 2: Modules de Cours -->
-        <div *ngIf="activeTab === 'modules'" style="display: flex; flex-direction: column; gap: 1.25rem;">
+        <div *ngIf="activeTab === 'modules'" style="display: flex; flex-direction: column; gap: 1.5rem;">
           <div *ngFor="let mod of formation()?.modules" class="card">
             <div class="card-header">
-              <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <div style="display: flex; align-items: center; gap: 0.85rem;">
                 <span class="badge badge-primary">Module {{ mod.ordre }}</span>
-                <h3 style="font-size: 1.15rem; margin: 0;">{{ mod.titre }}</h3>
+                <h3 style="font-size: 1.25rem; margin: 0; color: #ffffff;">{{ mod.titre }}</h3>
               </div>
             </div>
             <div class="card-body">
-              <div style="color: var(--slate-700); font-size: 0.95rem; line-height: 1.7; white-space: pre-wrap;">
+              <div style="color: #cbd5e1; font-size: 1rem; line-height: 1.7; white-space: pre-wrap;">
                 {{ mod.contenu }}
               </div>
             </div>
@@ -230,16 +231,16 @@ import {
       </div>
     </div>
 
-    <!-- Submission Modal -->
+    <!-- Cyber Submission Modal -->
     <div *ngIf="showSubmitModal" class="modal-overlay">
-      <div class="modal-content" style="padding: 2rem;">
-        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem;">
-          <h3 style="font-size: 1.35rem; margin: 0;">Soumettre votre travail</h3>
-          <button (click)="showSubmitModal = false" style="background: none; border: none; font-size: 1.5rem; cursor: pointer;">×</button>
+      <div class="modal-content" style="padding: 2.5rem;">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.75rem;">
+          <h3 style="font-size: 1.5rem; margin: 0; color: #ffffff;">Soumettre votre travail</h3>
+          <button (click)="showSubmitModal = false" style="background: none; border: none; font-size: 1.75rem; color: #94a3b8; cursor: pointer;">×</button>
         </div>
 
-        <div style="margin-bottom: 1rem; font-size: 0.9rem; color: var(--slate-600);">
-          Exercice : <strong>{{ currentExercice?.titre }}</strong>
+        <div style="margin-bottom: 1.5rem; font-size: 0.95rem; color: #94a3b8;">
+          Exercice sélectionné : <strong style="color: var(--neon-cyan);">{{ currentExercice?.titre }}</strong>
         </div>
 
         <form (ngSubmit)="envoyerSoumission()">
@@ -251,30 +252,30 @@ import {
               [(ngModel)]="submissionLien" 
               required 
               class="form-input" 
-              placeholder="https://github.com/mon-compte/mon-projet"
+              placeholder="https://github.com/votre-compte/votre-projet"
             >
-            <div style="font-size: 0.78rem; color: var(--slate-500); margin-top: 0.3rem;">
-              Le dépôt doit être public pour permettre l'inspection par l'IA et le formateur.
+            <div style="font-size: 0.8rem; color: #64748b; margin-top: 0.4rem;">
+              Le dépôt doit être public pour permettre l'inspection automatique par l'IA et le formateur.
             </div>
           </div>
 
           <div class="form-group">
-            <label class="form-label">Commentaire ou note pour l'évaluateur (optionnel)</label>
+            <label class="form-label">Commentaire ou notes techniques (optionnel)</label>
             <textarea 
               name="commentaire" 
               [(ngModel)]="submissionCommentaire" 
               class="form-textarea" 
-              placeholder="Ex : J'ai implémenté toutes les entités et configuré la sécurité JWT avec tests unitaires..."
+              placeholder="Ex : J'ai respecté l'architecture en couches, ajouté les endpoints avec validation et configuré les tests..."
             ></textarea>
           </div>
 
-          <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.5rem;">
+          <div style="display: flex; justify-content: flex-end; gap: 0.85rem; margin-top: 2rem;">
             <button type="button" (click)="showSubmitModal = false" class="btn btn-outline">
               Annuler
             </button>
-            <button type="submit" [disabled]="submitting()" class="btn btn-primary">
+            <button type="submit" [disabled]="submitting()" class="btn btn-cyber">
               <span *ngIf="submitting()" class="spinner"></span>
-              <span *ngIf="!submitting()">Confirmer la soumission</span>
+              <span *ngIf="!submitting()">Valider & Soumettre</span>
             </button>
           </div>
         </form>
@@ -283,7 +284,7 @@ import {
   `
 })
 export class FormationDetailComponent implements OnInit {
-  id = input.required<string>(); // Route param
+  id = input.required<string>();
 
   private api = inject(ApiService);
   public auth = inject(AuthService);
@@ -386,7 +387,7 @@ export class FormationDetailComponent implements OnInit {
       next: (sub) => {
         this.submitting.set(false);
         this.showSubmitModal = false;
-        this.toast.success('Projet soumis avec succès ! Vous pouvez maintenant lancer la correction par IA.');
+        this.toast.success('Projet soumis avec succès ! Vous pouvez lancer la correction IA.');
         this.chargerMesSoumissions();
         this.actualiserInscription();
       },
@@ -400,7 +401,7 @@ export class FormationDetailComponent implements OnInit {
 
   corrigerAvecIa(soumissionId: number) {
     this.correctingIaId.set(soumissionId);
-    this.toast.info('L\'IA Claude inspecte actuellement votre dépôt GitHub (README, architecture, code source)...');
+    this.toast.info('L\'IA Claude inspecte actuellement votre dépôt GitHub...');
 
     this.api.corrigerSoumissionIa(soumissionId).subscribe({
       next: (res) => {
@@ -408,14 +409,14 @@ export class FormationDetailComponent implements OnInit {
         if (res.statut === 'VALIDEE') {
           this.toast.success(`Exercice validé avec succès ! Note : ${res.note}/100 🏆`);
         } else {
-          this.toast.error(`Exercice à revoir (Note : ${res.note}/100). Consultez le feedback pour corriger.`);
+          this.toast.error(`Exercice à revoir (Note : ${res.note}/100).`);
         }
         this.chargerMesSoumissions();
         this.actualiserInscription();
       },
       error: (err) => {
         this.correctingIaId.set(null);
-        const msg = err.error?.message || 'Erreur lors de la correction automatique par l\'IA.';
+        const msg = err.error?.message || 'Erreur lors de la correction par l\'IA.';
         this.toast.error(msg);
       }
     });

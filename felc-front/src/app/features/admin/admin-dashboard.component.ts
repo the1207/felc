@@ -11,81 +11,85 @@ import { AdminStatsResponse, AdminUserResponse, OffreResponse, DomaineResponse }
   standalone: true,
   imports: [CommonModule, FormsModule, RouterModule],
   template: `
-    <div class="section-py" style="background-color: var(--slate-50); min-height: 85vh;">
+    <div class="section-py" style="min-height: 85vh; position: relative;">
+      <div class="ambient-glow-top"></div>
       <div class="app-container">
         
         <!-- Header -->
-        <div style="margin-bottom: 2.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+        <div style="margin-bottom: 3rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
           <div>
-            <span class="badge badge-danger" style="margin-bottom: 0.5rem;">Administration Centrale</span>
-            <h1 style="font-size: 2.25rem; margin-bottom: 0.25rem;">Supervision de la Plateforme FELC</h1>
-            <p style="color: var(--slate-600); font-size: 1rem;">
-              Métriques en temps réel, gestion des utilisateurs, modération des offres et création de domaines.
+            <div style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.35rem 0.85rem; border-radius: var(--radius-full); background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.4); color: #fca5a5; font-size: 0.8rem; font-weight: 800; font-family: var(--font-display); letter-spacing: 0.05em; margin-bottom: 0.5rem;">
+              <span class="pulsing-dot" style="background-color: var(--neon-rose); box-shadow: 0 0 10px var(--neon-rose);"></span>
+              <span>CONSOLE D'ADMINISTRATION CENTRALE</span>
+            </div>
+            <h1 style="font-size: 2.75rem; margin-bottom: 0.25rem; color: #ffffff;">Supervision Globale FELC</h1>
+            <p style="color: #94a3b8; font-size: 1.05rem;">
+              Métriques en temps réel, modération du catalogue, activation de comptes et création de filières.
             </p>
           </div>
-          <button (click)="showNewDomaineModal = true" class="btn btn-primary btn-lg" style="box-shadow: var(--shadow-glow);">
+          <button (click)="showNewDomaineModal = true" class="btn btn-cyber btn-lg">
             ➕ Nouveau Domaine Métier
           </button>
         </div>
 
-        <!-- Metric Stat Cards -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6" style="margin-bottom: 3rem;" *ngIf="stats() as s">
-          <div class="card" style="border-left: 4px solid var(--primary-600);">
+        <!-- Metric Stat Cards with Neon Accents -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6" style="margin-bottom: 3.5rem;" *ngIf="stats() as s">
+          <div class="card" style="border-top: 3px solid var(--neon-cyan); box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8);">
             <div class="card-body">
-              <div style="font-size: 0.75rem; font-weight: 700; color: var(--slate-500); text-transform: uppercase;">Total Utilisateurs</div>
-              <div style="font-size: 2rem; font-weight: 800; color: var(--slate-900); margin: 0.35rem 0;">{{ s.totalUsers }}</div>
-              <div style="font-size: 0.75rem; color: var(--slate-500);">
+              <div style="font-size: 0.75rem; font-weight: 800; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em;">Total Utilisateurs</div>
+              <div style="font-size: 2.5rem; font-weight: 800; color: #ffffff; font-family: var(--font-display); margin: 0.35rem 0;">{{ s.totalUsers }}</div>
+              <div style="font-size: 0.8rem; color: var(--neon-cyan);">
                 🎓 {{ s.totalApprenants }} Appr. • 👨‍🏫 {{ s.totalFormateurs }} Form. • 🏢 {{ s.totalEntreprises }} Entr.
               </div>
             </div>
           </div>
 
-          <div class="card" style="border-left: 4px solid var(--accent-500);">
+          <div class="card" style="border-top: 3px solid var(--neon-emerald); box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8);">
             <div class="card-body">
-              <div style="font-size: 0.75rem; font-weight: 700; color: var(--slate-500); text-transform: uppercase;">Formations & Soumissions</div>
-              <div style="font-size: 2rem; font-weight: 800; color: var(--accent-700); margin: 0.35rem 0;">{{ s.totalFormations }}</div>
-              <div style="font-size: 0.75rem; color: var(--slate-500);">
+              <div style="font-size: 0.75rem; font-weight: 800; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em;">Formations & Soumissions</div>
+              <div style="font-size: 2.5rem; font-weight: 800; color: #34d399; font-family: var(--font-display); margin: 0.35rem 0;">{{ s.totalFormations }}</div>
+              <div style="font-size: 0.8rem; color: #94a3b8;">
                 💻 {{ s.totalSoumissions }} soumissions de code évaluées
               </div>
             </div>
           </div>
 
-          <div class="card" style="border-left: 4px solid var(--amber-500);">
+          <div class="card" style="border-top: 3px solid var(--neon-amber); box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8);">
             <div class="card-body">
-              <div style="font-size: 0.75rem; font-weight: 700; color: var(--slate-500); text-transform: uppercase;">Certificats Délivrés</div>
-              <div style="font-size: 2rem; font-weight: 800; color: var(--amber-600); margin: 0.35rem 0;">{{ s.totalCertificats }}</div>
-              <div style="font-size: 0.75rem; color: var(--slate-500);">
-                📜 Codes infalsifiables vérifiés
+              <div style="font-size: 0.75rem; font-weight: 800; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em;">Certificats Délivrés</div>
+              <div style="font-size: 2.5rem; font-weight: 800; color: #facc15; font-family: var(--font-display); margin: 0.35rem 0;">{{ s.totalCertificats }}</div>
+              <div style="font-size: 0.8rem; color: #94a3b8;">
+                📜 Diplômes uniques infalsifiables
               </div>
             </div>
           </div>
 
-          <div class="card" style="border-left: 4px solid #8b5cf6;">
+          <div class="card" style="border-top: 3px solid var(--neon-purple); box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8);">
             <div class="card-body">
-              <div style="font-size: 0.75rem; font-weight: 700; color: var(--slate-500); text-transform: uppercase;">Offres & Candidatures</div>
-              <div style="font-size: 2rem; font-weight: 800; color: #7c3aed; margin: 0.35rem 0;">{{ s.totalOffres }}</div>
-              <div style="font-size: 0.75rem; color: var(--slate-500);">
+              <div style="font-size: 0.75rem; font-weight: 800; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em;">Offres & Candidatures</div>
+              <div style="font-size: 2.5rem; font-weight: 800; color: #d8b4fe; font-family: var(--font-display); margin: 0.35rem 0;">{{ s.totalOffres }}</div>
+              <div style="font-size: 0.8rem; color: #94a3b8;">
                 📩 {{ s.totalCandidatures }} candidatures enregistrées
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Tabs for Admin Views -->
-        <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem; border-bottom: 2px solid var(--slate-200);">
+        <!-- Navigation Tabs -->
+        <div style="display: flex; gap: 1rem; margin-bottom: 2rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
           <button 
             (click)="activeTab = 'users'"
-            [style.color]="activeTab === 'users' ? 'var(--primary-600)' : 'var(--slate-500)'"
-            [style.border-bottom]="activeTab === 'users' ? '3px solid var(--primary-600)' : 'none'"
-            style="background: none; border: none; font-weight: 700; font-size: 1rem; padding: 0.75rem 1rem; cursor: pointer;"
+            [style.color]="activeTab === 'users' ? 'var(--neon-cyan)' : '#94a3b8'"
+            [style.border-bottom]="activeTab === 'users' ? '2px solid var(--neon-cyan)' : 'none'"
+            style="background: none; border: none; font-weight: 700; font-size: 1.1rem; font-family: var(--font-display); padding: 0.85rem 1.25rem; cursor: pointer;"
           >
             👥 Gestion des Utilisateurs ({{ users().length }})
           </button>
           <button 
             (click)="activeTab = 'offres'"
-            [style.color]="activeTab === 'offres' ? 'var(--primary-600)' : 'var(--slate-500)'"
-            [style.border-bottom]="activeTab === 'offres' ? '3px solid var(--primary-600)' : 'none'"
-            style="background: none; border: none; font-weight: 700; font-size: 1rem; padding: 0.75rem 1rem; cursor: pointer;"
+            [style.color]="activeTab === 'offres' ? 'var(--neon-cyan)' : '#94a3b8'"
+            [style.border-bottom]="activeTab === 'offres' ? '2px solid var(--neon-cyan)' : 'none'"
+            style="background: none; border: none; font-weight: 700; font-size: 1.1rem; font-family: var(--font-display); padding: 0.85rem 1.25rem; cursor: pointer;"
           >
             💼 Modération des Offres ({{ offres().length }})
           </button>
@@ -97,37 +101,37 @@ import { AdminStatsResponse, AdminUserResponse, OffreResponse, DomaineResponse }
             <div style="overflow-x: auto;">
               <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9rem;">
                 <thead>
-                  <tr style="border-bottom: 2px solid var(--slate-200); background: var(--slate-50); color: var(--slate-600); font-weight: 700;">
-                    <th style="padding: 0.85rem 1.25rem;">Nom & Prénom</th>
-                    <th style="padding: 0.85rem 1.25rem;">Email</th>
-                    <th style="padding: 0.85rem 1.25rem;">Rôle</th>
-                    <th style="padding: 0.85rem 1.25rem;">Date Inscription</th>
-                    <th style="padding: 0.85rem 1.25rem;">Statut</th>
-                    <th style="padding: 0.85rem 1.25rem; text-align: right;">Action</th>
+                  <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.1); background: rgba(15, 23, 42, 0.6); color: #94a3b8; font-weight: 700; font-family: var(--font-display);">
+                    <th style="padding: 1rem 1.4rem;">Nom & Prénom</th>
+                    <th style="padding: 1rem 1.4rem;">Email</th>
+                    <th style="padding: 1rem 1.4rem;">Rôle</th>
+                    <th style="padding: 1rem 1.4rem;">Date Inscription</th>
+                    <th style="padding: 1rem 1.4rem;">Statut</th>
+                    <th style="padding: 1rem 1.4rem; text-align: right;">Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let u of users()" style="border-bottom: 1px solid var(--slate-100);">
-                    <td style="padding: 1rem 1.25rem; font-weight: 700; color: var(--slate-900);">
+                  <tr *ngFor="let u of users()" style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                    <td style="padding: 1.15rem 1.4rem; font-weight: 700; color: #ffffff;">
                       {{ u.prenom }} {{ u.nom }}
                     </td>
-                    <td style="padding: 1rem 1.25rem; color: var(--slate-600);">
+                    <td style="padding: 1.15rem 1.4rem; color: #cbd5e1;">
                       {{ u.email }}
                     </td>
-                    <td style="padding: 1rem 1.25rem;">
+                    <td style="padding: 1.15rem 1.4rem;">
                       <span class="badge" [ngClass]="getRoleBadgeClass(u.role)">
                         {{ u.role }}
                       </span>
                     </td>
-                    <td style="padding: 1rem 1.25rem; color: var(--slate-500); font-size: 0.825rem;">
+                    <td style="padding: 1.15rem 1.4rem; color: #64748b; font-size: 0.85rem;">
                       {{ u.dateInscription | date:'shortDate' }}
                     </td>
-                    <td style="padding: 1rem 1.25rem;">
+                    <td style="padding: 1.15rem 1.4rem;">
                       <span class="badge" [ngClass]="u.actif ? 'badge-success' : 'badge-danger'">
                         {{ u.actif ? 'ACTIF' : 'DÉSACTIVÉ' }}
                       </span>
                     </td>
-                    <td style="padding: 1rem 1.25rem; text-align: right;">
+                    <td style="padding: 1.15rem 1.4rem; text-align: right;">
                       <button 
                         (click)="toggleActivation(u)" 
                         class="btn btn-sm"
@@ -150,35 +154,35 @@ import { AdminStatsResponse, AdminUserResponse, OffreResponse, DomaineResponse }
             <div style="overflow-x: auto;">
               <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9rem;">
                 <thead>
-                  <tr style="border-bottom: 2px solid var(--slate-200); background: var(--slate-50); color: var(--slate-600); font-weight: 700;">
-                    <th style="padding: 0.85rem 1.25rem;">Titre</th>
-                    <th style="padding: 0.85rem 1.25rem;">Entreprise</th>
-                    <th style="padding: 0.85rem 1.25rem;">Type</th>
-                    <th style="padding: 0.85rem 1.25rem;">Budget</th>
-                    <th style="padding: 0.85rem 1.25rem;">Statut</th>
-                    <th style="padding: 0.85rem 1.25rem; text-align: right;">Modération</th>
+                  <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.1); background: rgba(15, 23, 42, 0.6); color: #94a3b8; font-weight: 700; font-family: var(--font-display);">
+                    <th style="padding: 1rem 1.4rem;">Titre</th>
+                    <th style="padding: 1rem 1.4rem;">Entreprise</th>
+                    <th style="padding: 1rem 1.4rem;">Type</th>
+                    <th style="padding: 1rem 1.4rem;">Budget</th>
+                    <th style="padding: 1rem 1.4rem;">Statut</th>
+                    <th style="padding: 1rem 1.4rem; text-align: right;">Modération</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let off of offres()" style="border-bottom: 1px solid var(--slate-100);">
-                    <td style="padding: 1rem 1.25rem; font-weight: 700; color: var(--slate-900);">
+                  <tr *ngFor="let off of offres()" style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                    <td style="padding: 1.15rem 1.4rem; font-weight: 700; color: #ffffff;">
                       {{ off.titre }}
                     </td>
-                    <td style="padding: 1rem 1.25rem; color: var(--slate-600);">
+                    <td style="padding: 1.15rem 1.4rem; color: #cbd5e1;">
                       {{ off.entrepriseNom }}
                     </td>
-                    <td style="padding: 1rem 1.25rem;">
+                    <td style="padding: 1.15rem 1.4rem;">
                       <span class="badge badge-primary">{{ off.type }}</span>
                     </td>
-                    <td style="padding: 1rem 1.25rem; font-weight: 700;">
+                    <td style="padding: 1.15rem 1.4rem; font-weight: 800; font-family: var(--font-display); color: #facc15;">
                       {{ off.budget | number }} FCFA
                     </td>
-                    <td style="padding: 1rem 1.25rem;">
+                    <td style="padding: 1.15rem 1.4rem;">
                       <span class="badge" [ngClass]="off.statut === 'OUVERTE' ? 'badge-success' : 'badge-danger'">
                         {{ off.statut }}
                       </span>
                     </td>
-                    <td style="padding: 1rem 1.25rem; text-align: right;">
+                    <td style="padding: 1.15rem 1.4rem; text-align: right;">
                       <button (click)="toggleOffreStatut(off)" class="btn btn-outline btn-sm">
                         {{ off.statut === 'OUVERTE' ? '🔒 Fermer' : '🔓 Rouvrir' }}
                       </button>
@@ -195,10 +199,10 @@ import { AdminStatsResponse, AdminUserResponse, OffreResponse, DomaineResponse }
 
     <!-- Create Domaine Modal -->
     <div *ngIf="showNewDomaineModal" class="modal-overlay">
-      <div class="modal-content" style="padding: 2rem;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-          <h3 style="font-size: 1.35rem; margin: 0;">Créer un nouveau Domaine Métier</h3>
-          <button (click)="showNewDomaineModal = false" style="background: none; border: none; font-size: 1.5rem; cursor: pointer;">×</button>
+      <div class="modal-content" style="padding: 2.5rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.75rem;">
+          <h3 style="font-size: 1.5rem; margin: 0; color: #ffffff;">Créer un nouveau Domaine Métier</h3>
+          <button (click)="showNewDomaineModal = false" style="background: none; border: none; font-size: 1.75rem; color: #94a3b8; cursor: pointer;">×</button>
         </div>
 
         <form (ngSubmit)="creerDomaine()">
@@ -217,11 +221,11 @@ import { AdminStatsResponse, AdminUserResponse, OffreResponse, DomaineResponse }
             <textarea name="description" [(ngModel)]="nouveauDomaine.description" class="form-textarea"></textarea>
           </div>
 
-          <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.5rem;">
+          <div style="display: flex; justify-content: flex-end; gap: 0.85rem; margin-top: 2rem;">
             <button type="button" (click)="showNewDomaineModal = false" class="btn btn-outline">Annuler</button>
-            <button type="submit" [disabled]="submittingDomaine()" class="btn btn-primary">
+            <button type="submit" [disabled]="submittingDomaine()" class="btn btn-cyber">
               <span *ngIf="submittingDomaine()" class="spinner"></span>
-              <span *ngIf="!submittingDomaine()">Enregistrer le domaine</span>
+              <span *ngIf="!submittingDomaine()">Enregistrer le domaine ➔</span>
             </button>
           </div>
         </form>

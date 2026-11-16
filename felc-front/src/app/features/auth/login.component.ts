@@ -10,38 +10,39 @@ import { ToastService } from '../../core/services/toast.service';
   standalone: true,
   imports: [CommonModule, FormsModule, RouterModule],
   template: `
-    <div class="section-py" style="background: linear-gradient(135deg, var(--slate-100), var(--primary-50)); min-height: 80vh; display: flex; align-items: center;">
-      <div class="app-container" style="max-width: 480px; width: 100%;">
+    <div class="section-py" style="min-height: 85vh; display: flex; align-items: center; position: relative;">
+      <div class="ambient-glow-top"></div>
+      <div class="app-container" style="max-width: 500px; width: 100%;">
         
-        <div class="card" style="box-shadow: var(--shadow-xl); border: 1px solid var(--slate-200);">
-          <div class="card-body" style="padding: 2.25rem;">
+        <div class="card" style="box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9), var(--glow-indigo);">
+          <div class="card-body" style="padding: 2.5rem;">
             
             <div style="text-align: center; margin-bottom: 2rem;">
-              <div style="width: 3.5rem; height: 3.5rem; border-radius: var(--radius-2xl); background: linear-gradient(135deg, var(--primary-600), var(--accent-500)); color: white; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin: 0 auto 1rem auto; box-shadow: var(--shadow-md);">
+              <div style="width: 3.75rem; height: 3.75rem; border-radius: var(--radius-2xl); background: var(--grad-cyber); color: white; display: flex; align-items: center; justify-content: center; font-size: 1.75rem; margin: 0 auto 1.25rem auto; box-shadow: 0 0 25px rgba(6, 182, 212, 0.5);">
                 ⚡
               </div>
-              <h1 style="font-size: 1.75rem; margin-bottom: 0.4rem;">Connexion</h1>
-              <p style="color: var(--slate-600); font-size: 0.9rem;">
-                Accédez à votre espace d'apprentissage ou recruteur
+              <h1 style="font-size: 2rem; margin-bottom: 0.4rem; color: #ffffff;">Connexion</h1>
+              <p style="color: #94a3b8; font-size: 0.95rem;">
+                Accédez à votre espace apprenant, formateur ou recruteur
               </p>
             </div>
 
             <!-- Demo Account Quick Selector for Evaluators -->
-            <div style="background: var(--slate-50); border: 1px dashed var(--slate-300); border-radius: var(--radius-lg); padding: 0.85rem; margin-bottom: 1.5rem;">
-              <div style="font-size: 0.75rem; font-weight: 700; color: var(--slate-600); text-transform: uppercase; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.35rem;">
-                <span>🎯</span> Raccourcis Comptes Démo (Hackathon) :
+            <div style="background: rgba(15, 23, 42, 0.8); border: 1px dashed rgba(99, 102, 241, 0.4); border-radius: var(--radius-xl); padding: 1rem; margin-bottom: 2rem;">
+              <div style="font-size: 0.75rem; font-weight: 800; color: var(--neon-cyan); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.4rem;">
+                <span class="pulsing-dot"></span> Raccourcis Comptes Démo (Hackathon) :
               </div>
-              <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.4rem;">
-                <button type="button" (click)="fillDemo('admin@felc.com', 'adminpassword123')" class="btn btn-outline btn-sm" style="font-size: 0.75rem; justify-content: flex-start;">
+              <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem;">
+                <button type="button" (click)="fillDemo('admin@felc.com', 'adminpassword123')" class="btn btn-outline btn-sm" style="font-size: 0.8rem; justify-content: flex-start;">
                   👑 Admin
                 </button>
-                <button type="button" (click)="fillDemo('formateur@felc.com', 'formateur123')" class="btn btn-outline btn-sm" style="font-size: 0.75rem; justify-content: flex-start;">
+                <button type="button" (click)="fillDemo('formateur@felc.com', 'formateur123')" class="btn btn-outline btn-sm" style="font-size: 0.8rem; justify-content: flex-start;">
                   👨‍🏫 Formateur
                 </button>
-                <button type="button" (click)="fillDemo('entreprise@felc.com', 'entreprise123')" class="btn btn-outline btn-sm" style="font-size: 0.75rem; justify-content: flex-start;">
+                <button type="button" (click)="fillDemo('entreprise@felc.com', 'entreprise123')" class="btn btn-outline btn-sm" style="font-size: 0.8rem; justify-content: flex-start;">
                   🏢 Entreprise
                 </button>
-                <button type="button" (click)="fillDemo('apprenant@felc.com', 'apprenant123')" class="btn btn-outline btn-sm" style="font-size: 0.75rem; justify-content: flex-start;">
+                <button type="button" (click)="fillDemo('apprenant@felc.com', 'apprenant123')" class="btn btn-outline btn-sm" style="font-size: 0.8rem; justify-content: flex-start;">
                   🎓 Apprenant
                 </button>
               </div>
@@ -76,18 +77,18 @@ import { ToastService } from '../../core/services/toast.service';
               <button 
                 type="submit" 
                 [disabled]="loading()" 
-                class="btn btn-primary" 
-                style="width: 100%; padding: 0.75rem; font-size: 1rem; margin-top: 0.5rem;"
+                class="btn btn-cyber" 
+                style="width: 100%; padding: 0.85rem; font-size: 1.05rem; margin-top: 1rem;"
               >
                 <span *ngIf="loading()" class="spinner"></span>
-                <span *ngIf="!loading()">Se connecter</span>
+                <span *ngIf="!loading()">Se connecter ➔</span>
               </button>
 
             </form>
 
-            <div style="text-align: center; margin-top: 1.5rem; font-size: 0.875rem; color: var(--slate-600);">
+            <div style="text-align: center; margin-top: 2rem; font-size: 0.9rem; color: #94a3b8;">
               Pas encore de compte ? 
-              <a routerLink="/auth/register" style="font-weight: 700; color: var(--primary-600);">
+              <a routerLink="/auth/register" style="font-weight: 700; color: var(--neon-cyan);">
                 Créer un compte
               </a>
             </div>
@@ -127,7 +128,6 @@ export class LoginComponent {
         this.loading.set(false);
         this.toast.success(`Bienvenue, ${res.prenom} ${res.nom} !`);
         
-        // Redirection contextuelle selon le rôle
         const returnUrl = this.route.snapshot.queryParams['returnUrl'];
         if (returnUrl) {
           this.router.navigateByUrl(returnUrl);

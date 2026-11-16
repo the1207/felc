@@ -12,20 +12,21 @@ import { OffreResponse, CandidatureResponse } from '../../core/models/models';
   standalone: true,
   imports: [CommonModule, FormsModule, RouterModule],
   template: `
-    <div *ngIf="offre()" class="section-py" style="background-color: var(--slate-50); min-height: 85vh;">
-      <div class="app-container" style="max-width: 900px;">
+    <div *ngIf="offre()" class="section-py" style="min-height: 85vh; position: relative;">
+      <div class="ambient-glow-top"></div>
+      <div class="app-container" style="max-width: 920px;">
         
-        <div style="margin-bottom: 1.5rem;">
-          <a routerLink="/offres" style="font-size: 0.9rem; font-weight: 600; color: var(--slate-600); display: inline-flex; align-items: center; gap: 0.4rem;">
-            ← Retour aux offres
+        <div style="margin-bottom: 2rem;">
+          <a routerLink="/offres" style="font-size: 0.95rem; font-weight: 700; color: var(--neon-cyan); display: inline-flex; align-items: center; gap: 0.4rem; font-family: var(--font-display);">
+            ← Retour aux offres d'emploi
           </a>
         </div>
 
-        <div class="card" style="margin-bottom: 2rem; box-shadow: var(--shadow-md);">
-          <div class="card-body" style="padding: 2.5rem;">
+        <div class="card" style="margin-bottom: 2.5rem; box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.8), var(--glow-cyan);">
+          <div class="card-body" style="padding: 3rem 2.5rem;">
             
-            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;">
-              <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 0.75rem;">
+              <div style="display: flex; align-items: center; gap: 0.6rem;">
                 <span class="badge" [ngClass]="offre()?.type === 'MISSION' ? 'badge-purple' : 'badge-primary'">
                   {{ offre()?.type }}
                 </span>
@@ -37,48 +38,48 @@ import { OffreResponse, CandidatureResponse } from '../../core/models/models';
               </span>
             </div>
 
-            <h1 style="font-size: 2.15rem; margin-bottom: 0.5rem; color: var(--slate-900);">
+            <h1 style="font-size: 2.5rem; margin-bottom: 0.5rem; color: #ffffff;">
               {{ offre()?.titre }}
             </h1>
 
-            <div style="font-size: 1.05rem; font-weight: 600; color: var(--primary-600); margin-bottom: 1.5rem;">
+            <div style="font-size: 1.15rem; font-weight: 600; color: var(--neon-cyan); margin-bottom: 2rem;">
               🏢 {{ offre()?.entrepriseNom }} • 📍 {{ offre()?.localisation }}
             </div>
 
-            <!-- Highlights Box -->
-            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; background: var(--slate-50); border: 1px solid var(--slate-200); border-radius: var(--radius-xl); padding: 1.25rem; margin-bottom: 2rem;" class="md:grid-cols-3">
+            <!-- Highlights Matrix Box -->
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: var(--radius-xl); padding: 1.5rem; margin-bottom: 2.5rem;" class="md:grid-cols-3">
               <div>
-                <div style="font-size: 0.75rem; color: var(--slate-500); font-weight: 700; text-transform: uppercase;">Budget / Rémunération</div>
-                <div style="font-size: 1.35rem; font-weight: 800; color: var(--slate-900);">
+                <div style="font-size: 0.75rem; color: #64748b; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em;">Budget / Rémunération</div>
+                <div style="font-size: 1.6rem; font-weight: 800; color: #facc15; font-family: var(--font-display);">
                   {{ offre()?.budget | number }} FCFA
                 </div>
               </div>
               <div>
-                <div style="font-size: 0.75rem; color: var(--slate-500); font-weight: 700; text-transform: uppercase;">Expérience minimale</div>
-                <div style="font-size: 1.15rem; font-weight: 700; color: var(--slate-800); margin-top: 0.2rem;">
+                <div style="font-size: 0.75rem; color: #64748b; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em;">Expérience requise</div>
+                <div style="font-size: 1.25rem; font-weight: 700; color: #ffffff; margin-top: 0.25rem;">
                   {{ offre()?.experienceMin }} an(s)
                 </div>
               </div>
               <div>
-                <div style="font-size: 0.75rem; color: var(--slate-500); font-weight: 700; text-transform: uppercase;">Date de publication</div>
-                <div style="font-size: 0.95rem; font-weight: 600; color: var(--slate-800); margin-top: 0.2rem;">
+                <div style="font-size: 0.75rem; color: #64748b; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em;">Date de publication</div>
+                <div style="font-size: 1.05rem; font-weight: 700; color: #ffffff; margin-top: 0.25rem;">
                   {{ offre()?.datePublication | date:'mediumDate' }}
                 </div>
               </div>
             </div>
 
             <!-- Description -->
-            <div style="margin-bottom: 2.5rem;">
-              <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: var(--slate-900);">Description de la mission / du poste</h3>
-              <div style="color: var(--slate-700); font-size: 1rem; line-height: 1.7; white-space: pre-wrap;">
+            <div style="margin-bottom: 3rem;">
+              <h3 style="font-size: 1.35rem; margin-bottom: 1.25rem; color: #ffffff; font-family: var(--font-display);">Description de la mission / du poste</h3>
+              <div style="color: #cbd5e1; font-size: 1.05rem; line-height: 1.8; white-space: pre-wrap;">
                 {{ offre()?.description }}
               </div>
             </div>
 
             <!-- Postuler CTA -->
-            <div style="border-top: 1px solid var(--slate-200); padding-top: 1.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+            <div style="border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
               <div *ngIf="existingCandidature(); else notAppliedTpl">
-                <span class="badge badge-success" style="font-size: 0.9rem; padding: 0.4rem 0.85rem;">
+                <span class="badge badge-success" style="font-size: 0.95rem; padding: 0.5rem 1rem;">
                   ✓ Vous avez postulé à cette offre (Statut : {{ existingCandidature()?.statut }})
                 </span>
               </div>
@@ -88,13 +89,13 @@ import { OffreResponse, CandidatureResponse } from '../../core/models/models';
                   <button 
                     *ngIf="auth.userRole() === 'APPRENANT'" 
                     (click)="showApplyModal = true" 
-                    class="btn btn-primary btn-lg"
-                    style="box-shadow: var(--shadow-glow);"
+                    class="btn btn-cyber btn-lg"
+                    style="box-shadow: 0 0 30px rgba(6, 182, 212, 0.4);"
                   >
                     📩 Postuler à cette offre
                   </button>
-                  <div *ngIf="!auth.isLoggedIn()" style="font-size: 0.9rem; color: var(--slate-600);">
-                    <a routerLink="/auth/login" style="font-weight: 700;">Connectez-vous en tant qu'apprenant</a> pour soumettre votre candidature.
+                  <div *ngIf="!auth.isLoggedIn()" style="font-size: 0.95rem; color: #94a3b8;">
+                    <a routerLink="/auth/login" style="font-weight: 700; color: var(--neon-cyan);">Connectez-vous en tant qu'apprenant</a> pour soumettre votre candidature.
                   </div>
                 </div>
                 <ng-template #closedTpl>
@@ -109,12 +110,12 @@ import { OffreResponse, CandidatureResponse } from '../../core/models/models';
       </div>
     </div>
 
-    <!-- Application Modal -->
+    <!-- Application Cyber Modal -->
     <div *ngIf="showApplyModal" class="modal-overlay">
-      <div class="modal-content" style="padding: 2.25rem;">
-        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem;">
-          <h3 style="font-size: 1.35rem; margin: 0;">Postuler : {{ offre()?.titre }}</h3>
-          <button (click)="showApplyModal = false" style="background: none; border: none; font-size: 1.5rem; cursor: pointer;">×</button>
+      <div class="modal-content" style="padding: 2.5rem;">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.75rem;">
+          <h3 style="font-size: 1.5rem; margin: 0; color: #ffffff;">Postuler : {{ offre()?.titre }}</h3>
+          <button (click)="showApplyModal = false" style="background: none; border: none; font-size: 1.75rem; color: #94a3b8; cursor: pointer;">×</button>
         </div>
 
         <form (ngSubmit)="envoyerCandidature()">
@@ -125,8 +126,8 @@ import { OffreResponse, CandidatureResponse } from '../../core/models/models';
               [(ngModel)]="applyMessage" 
               required 
               class="form-textarea"
-              style="min-height: 120px;"
-              placeholder="Expliquez pourquoi vos compétences pratiques et projets validés sur FELC correspondent à cette offre..."
+              style="min-height: 130px;"
+              placeholder="Expliquez pourquoi vos compétences pratiques et projets validés sur FELC correspondent aux attentes de la mission..."
             ></textarea>
           </div>
 
@@ -141,13 +142,13 @@ import { OffreResponse, CandidatureResponse } from '../../core/models/models';
             >
           </div>
 
-          <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.5rem;">
+          <div style="display: flex; justify-content: flex-end; gap: 0.85rem; margin-top: 2rem;">
             <button type="button" (click)="showApplyModal = false" class="btn btn-outline">
               Annuler
             </button>
-            <button type="submit" [disabled]="submitting()" class="btn btn-primary">
+            <button type="submit" [disabled]="submitting()" class="btn btn-cyber">
               <span *ngIf="submitting()" class="spinner"></span>
-              <span *ngIf="!submitting()">Envoyer ma candidature</span>
+              <span *ngIf="!submitting()">Envoyer ma candidature ➔</span>
             </button>
           </div>
         </form>
