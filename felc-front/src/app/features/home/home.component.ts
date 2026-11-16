@@ -44,11 +44,14 @@ import { FormationResponse, OffreResponse } from '../../core/models/models';
               <a routerLink="/orientation" class="btn btn-cyber btn-lg" style="box-shadow: 0 0 35px rgba(6, 182, 212, 0.5);">
                 ✨ Lancer le Diagnostic IA
               </a>
+              <a routerLink="/interview-coach" class="btn btn-outline btn-lg" style="border-color: rgba(6, 182, 212, 0.4); color: #67e8f9;">
+                🎯 Simulateur d'Entretien IA
+              </a>
+              <a routerLink="/cv-builder" class="btn btn-outline btn-lg" style="border-color: rgba(99, 102, 241, 0.4); color: #c7d2fe;">
+                📄 Générateur de CV Pro
+              </a>
               <a routerLink="/formations" class="btn btn-outline btn-lg">
                 📚 Formations Pratiques
-              </a>
-              <a routerLink="/impact" class="btn btn-outline btn-lg" style="border-color: rgba(16, 185, 129, 0.4); color: #6ee7b7;">
-                🌍 Impact Humanitaire ODD
               </a>
               <a routerLink="/certificats/verify" class="btn btn-outline btn-lg" style="border-color: rgba(245, 158, 11, 0.4); color: #fde68a;">
                 🛡️ Vérifier un Certificat
@@ -285,59 +288,68 @@ import { FormationResponse, OffreResponse } from '../../core/models/models';
         </div>
       </section>
 
-      <!-- Humanitarian Impact & UN SDGs Banner -->
-      <section style="background: rgba(6, 182, 212, 0.04); border-top: 1px solid rgba(6, 182, 212, 0.15); border-bottom: 1px solid rgba(6, 182, 212, 0.15); padding: 4.5rem 0;">
+      <!-- Career Acceleration & Real Tools Section -->
+      <section style="background: rgba(6, 182, 212, 0.03); border-top: 1px solid rgba(255, 255, 255, 0.08); border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding: 4.5rem 0;">
         <div class="app-container">
           <div style="text-align: center; max-width: 760px; margin: 0 auto 3.5rem;">
-            <span class="badge badge-cyber" style="margin-bottom: 0.75rem;">Impact Sociétal & Humanitaire</span>
+            <span class="badge badge-cyber" style="margin-bottom: 0.75rem;">Outils Concrets d'Emploi</span>
             <h2 style="font-size: 2.35rem; color: #ffffff; margin-bottom: 1rem;">
-              Candidat au Prix de l'Impact Numérique Durable
+              Tout ce qu'il vous faut pour décrocher votre premier contrat
             </h2>
             <p style="color: #cbd5e1; font-size: 1.05rem; line-height: 1.6;">
-              FELC est alignée sur 5 Objectifs de Développement Durable (ODD 1, 4, 5, 8, 13) pour transformer la formation en émancipation économique réelle.
+              Au-delà des formations, FELC vous arme avec les outils professionnels utilisés par les candidats qui réussissent leurs recrutements.
             </p>
           </div>
 
           <div class="grid grid-cols-1 md:grid-cols-3 gap-6" style="margin-bottom: 3rem;">
             
-            <div class="card card-glow-emerald">
+            <div class="card card-hover" style="border-top: 3px solid var(--neon-cyan);">
               <div class="card-body">
-                <div style="font-size: 2rem; margin-bottom: 0.75rem;">🌍</div>
-                <h3 style="font-size: 1.2rem; color: #ffffff; margin-bottom: 0.5rem;">Inclusion & 5 Régions du Togo</h3>
-                <p style="color: #94a3b8; font-size: 0.88rem; line-height: 1.6;">
-                  42% des apprenants formés sont hors de la capitale (Kara, Sokodé, Kpalimé, Dapaong) grâce au Mode Frugal 2G/3G et à l'assistant vocal.
+                <div style="font-size: 2.2rem; margin-bottom: 0.75rem;">🎯</div>
+                <h3 style="font-size: 1.3rem; color: #ffffff; margin-bottom: 0.5rem;">Simulateur d'Entretien IA</h3>
+                <p style="color: #94a3b8; font-size: 0.9rem; line-height: 1.6; margin-bottom: 1.25rem;">
+                  Entraînez-vous face à des questions techniques et RH réelles. L'IA note votre réponse, détecte les manques et vous livre la réponse type attendue.
                 </p>
+                <a routerLink="/interview-coach" class="btn btn-ghost btn-sm" style="color: var(--neon-cyan); padding-left: 0;">
+                  Tester un entretien ➔
+                </a>
               </div>
             </div>
 
-            <div class="card card-glow-amber">
+            <div class="card card-hover" style="border-top: 3px solid var(--neon-indigo);">
               <div class="card-body">
-                <div style="font-size: 2rem; margin-bottom: 0.75rem;">🤝</div>
-                <h3 style="font-size: 1.2rem; color: #ffffff; margin-bottom: 0.5rem;">Bourses Tremplin & Diaspora</h3>
-                <p style="color: #94a3b8; font-size: 0.88rem; line-height: 1.6;">
-                  Financement direct de pass 4G (5 000 FCFA) et de PC portables reconditionnés pour les étudiants ayant validé leurs premiers exercices.
+                <div style="font-size: 2.2rem; margin-bottom: 0.75rem;">📄</div>
+                <h3 style="font-size: 1.3rem; color: #ffffff; margin-bottom: 0.5rem;">Générateur de CV Certifié</h3>
+                <p style="color: #94a3b8; font-size: 0.9rem; line-height: 1.6; margin-bottom: 1.25rem;">
+                  Générez un CV technique au format ATS intégrant automatiquement vos dépôts GitHub et vos certificats vérifiés FELC. Prêt à imprimer en PDF.
                 </p>
+                <a routerLink="/cv-builder" class="btn btn-ghost btn-sm" style="color: var(--neon-indigo); padding-left: 0;">
+                  Créer mon CV Pro ➔
+                </a>
               </div>
             </div>
 
-            <div class="card card-glow-cyan">
+            <div class="card card-hover" style="border-top: 3px solid var(--neon-emerald);">
               <div class="card-body">
-                <div style="font-size: 2rem; margin-bottom: 0.75rem;">👩‍💻</div>
-                <h3 style="font-size: 1.2rem; color: #ffffff; margin-bottom: 0.5rem;">Femmes & Tech Togo</h3>
-                <p style="color: #94a3b8; font-size: 0.88rem; line-height: 1.6;">
-                  Programme d'encouragement actif pour atteindre 50% de femmes certifiées dans le développement web, l'IoT et les énergies renouvelables.
+                <div style="font-size: 2.2rem; margin-bottom: 0.75rem;">⚡</div>
+                <h3 style="font-size: 1.3rem; color: #ffffff; margin-bottom: 0.5rem;">Frugal & Hors-Ligne</h3>
+                <p style="color: #94a3b8; font-size: 0.9rem; line-height: 1.6; margin-bottom: 1.25rem;">
+                  Économisez votre forfait internet avec le mode 2G/3G, écoutez vos cours en synthèse vocale et téléchargez vos fiches pratiques pour coder hors-ligne.
                 </p>
+                <a routerLink="/formations" class="btn btn-ghost btn-sm" style="color: var(--neon-emerald); padding-left: 0;">
+                  Voir les cours ➔
+                </a>
               </div>
             </div>
 
           </div>
 
           <div style="text-align: center; display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
-            <a routerLink="/impact" class="btn btn-cyber">
-              Découvrir le Rapport d'Impact ODD ➔
+            <a routerLink="/interview-coach" class="btn btn-cyber">
+              🎯 Démarrer une Simulation d'Entretien
             </a>
-            <a routerLink="/bourses" class="btn btn-outline" style="border-color: rgba(245, 158, 11, 0.5); color: #fde68a;">
-              🤝 Parrainer une Bourse 4G
+            <a routerLink="/cv-builder" class="btn btn-outline">
+              📄 Générer mon CV Technique
             </a>
           </div>
         </div>

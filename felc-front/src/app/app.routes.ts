@@ -17,12 +17,18 @@ import { FormateurDashboardComponent } from './features/formateur/formateur-dash
 import { AdminDashboardComponent } from './features/admin/admin-dashboard.component';
 import { ImpactComponent } from './features/impact/impact.component';
 import { BoursesComponent } from './features/bourses/bourses.component';
+import { InterviewCoachComponent } from './features/interview/interview-coach.component';
+import { CvBuilderComponent } from './features/cv/cv-builder.component';
 import { authGuard, roleGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   
-  // High Impact & Inclusion
+  // Outils Concrets d'Emploi & Carrière
+  { path: 'interview-coach', component: InterviewCoachComponent },
+  { path: 'cv-builder', component: CvBuilderComponent },
+
+  // Inclusion & Terrains
   { path: 'impact', component: ImpactComponent },
   { path: 'bourses', component: BoursesComponent },
 

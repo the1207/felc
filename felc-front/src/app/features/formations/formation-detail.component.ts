@@ -92,6 +92,18 @@ import {
               </div>
             </ng-template>
 
+            <!-- Quick Action Bar -->
+            <div style="display: flex; align-items: center; justify-content: flex-end; margin-top: 1.25rem;">
+              <button 
+                type="button"
+                (click)="imprimerFicheCours()" 
+                class="btn btn-ghost btn-sm" 
+                style="border: 1px solid rgba(255, 255, 255, 0.15); color: #94a3b8; font-size: 0.82rem;"
+                title="Enregistrez ou imprimez cette fiche complète pour travailler hors-ligne sans connexion"
+              >
+                🖨️ Fiche de Cours & Exercices (PDF / Hors-Ligne)
+              </button>
+            </div>
           </div>
         </div>
 
@@ -530,6 +542,12 @@ export class FormationDetailComponent implements OnInit {
       this.activeVoiceTarget.set(targetKey);
       const speech = `Module ${mod.ordre} : ${mod.titre}. ${mod.contenu}`;
       this.voice.speak(speech, 'fr-FR', this.speechRate());
+    }
+  }
+
+  imprimerFicheCours() {
+    if (typeof window !== 'undefined') {
+      window.print();
     }
   }
 

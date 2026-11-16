@@ -36,14 +36,14 @@ import { DataSaverService } from '../../core/services/data-saver.service';
           <a routerLink="/offres" routerLinkActive="active-nav" style="font-family: var(--font-display); font-weight: 600; font-size: 0.92rem; color: #cbd5e1;">
             Offres & Missions
           </a>
+          <a routerLink="/interview-coach" routerLinkActive="active-nav" style="font-family: var(--font-display); font-weight: 600; font-size: 0.92rem; color: var(--neon-cyan);">
+            🎯 Entretien IA
+          </a>
+          <a routerLink="/cv-builder" routerLinkActive="active-nav" style="font-family: var(--font-display); font-weight: 600; font-size: 0.92rem; color: #cbd5e1;">
+            📄 CV Pro
+          </a>
           <a routerLink="/forum" routerLinkActive="active-nav" style="font-family: var(--font-display); font-weight: 600; font-size: 0.92rem; color: #cbd5e1;">
             Forum
-          </a>
-          <a routerLink="/bourses" routerLinkActive="active-nav" style="font-family: var(--font-display); font-weight: 600; font-size: 0.92rem; color: #f59e0b;">
-            🤝 Bourses
-          </a>
-          <a routerLink="/impact" routerLinkActive="active-nav" style="font-family: var(--font-display); font-weight: 600; font-size: 0.92rem; color: #10b981;">
-            🌍 Impact ODD
           </a>
           <a routerLink="/certificats/verify" routerLinkActive="active-nav" style="font-family: var(--font-display); font-weight: 600; font-size: 0.92rem; color: #cbd5e1;">
             Certificats
@@ -169,8 +169,8 @@ import { DataSaverService } from '../../core/services/data-saver.service';
         <div style="display: flex; flex-direction: column; gap: 1.2rem;">
           <a routerLink="/formations" (click)="mobileMenuOpen.set(false)" style="font-weight: 600; color: #ffffff;">📚 Catalogue Formations</a>
           <a routerLink="/offres" (click)="mobileMenuOpen.set(false)" style="font-weight: 600; color: #ffffff;">💼 Offres & Missions Freelance</a>
-          <a routerLink="/bourses" (click)="mobileMenuOpen.set(false)" style="font-weight: 600; color: #f59e0b;">🤝 Bourses & Micro-Parrainage</a>
-          <a routerLink="/impact" (click)="mobileMenuOpen.set(false)" style="font-weight: 600; color: #10b981;">🌍 Impact ODD & Inclusion</a>
+          <a routerLink="/interview-coach" (click)="mobileMenuOpen.set(false)" style="font-weight: 600; color: var(--neon-cyan);">🎯 Simulateur d'Entretien IA</a>
+          <a routerLink="/cv-builder" (click)="mobileMenuOpen.set(false)" style="font-weight: 600; color: #cbd5e1;">📄 Générateur de CV Pro</a>
           <a routerLink="/forum" (click)="mobileMenuOpen.set(false)" style="font-weight: 600; color: #ffffff;">💬 Forum Communautaire</a>
           <a routerLink="/orientation" (click)="mobileMenuOpen.set(false)" style="font-weight: 600; color: var(--neon-cyan);">✨ Moteur d'Orientation IA</a>
           <a routerLink="/certificats/verify" (click)="mobileMenuOpen.set(false)" style="font-weight: 600; color: #ffffff;">🛡️ Vérifier un Certificat</a>

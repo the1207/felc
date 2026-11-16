@@ -39,14 +39,14 @@ import { RouterModule } from '@angular/router';
             </ul>
           </div>
 
-          <!-- Column 3: Emploi & Entreprises -->
+          <!-- Column 3: Emploi & Carrière -->
           <div>
-            <h4 style="color: #ffffff; font-size: 1rem; margin-bottom: 1.25rem; font-family: var(--font-display);">Marché & Solidarité</h4>
+            <h4 style="color: #ffffff; font-size: 1rem; margin-bottom: 1.25rem; font-family: var(--font-display);">Emploi & Carrière</h4>
             <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.9rem;">
               <li><a routerLink="/offres" style="color: #94a3b8;">Offres d'Emploi & Stages</a></li>
               <li><a routerLink="/offres" [queryParams]="{ type: 'MISSION' }" style="color: #94a3b8;">Missions Freelance (FCFA)</a></li>
-              <li><a routerLink="/bourses" style="color: #f59e0b; font-weight: 700;">🤝 Bourses & Micro-Parrainage</a></li>
-              <li><a routerLink="/impact" style="color: #10b981; font-weight: 700;">🌍 Impact ODD & Inclusion Togo</a></li>
+              <li><a routerLink="/interview-coach" style="color: var(--neon-cyan); font-weight: 700;">🎯 Simulateur d'Entretien IA</a></li>
+              <li><a routerLink="/cv-builder" style="color: #cbd5e1; font-weight: 700;">📄 Générateur de CV Pro</a></li>
               <li><a routerLink="/certificats/verify" style="color: #facc15;">🛡️ Vérification de Certificat</a></li>
             </ul>
           </div>
