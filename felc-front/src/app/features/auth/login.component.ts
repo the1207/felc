@@ -27,38 +27,18 @@ import { ToastService } from '../../core/services/toast.service';
               </p>
             </div>
 
-            <!-- Demo Account Quick Selector for Evaluators -->
-            <div style="background: rgba(15, 23, 42, 0.8); border: 1px dashed rgba(99, 102, 241, 0.4); border-radius: var(--radius-xl); padding: 1rem; margin-bottom: 2rem;">
-              <div style="font-size: 0.75rem; font-weight: 800; color: var(--neon-cyan); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.4rem;">
-                <span class="pulsing-dot"></span> Raccourcis Comptes Démo (Hackathon) :
-              </div>
-              <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem;">
-                <button type="button" (click)="fillDemo('admin@felc.com', 'adminpassword123')" class="btn btn-outline btn-sm" style="font-size: 0.8rem; justify-content: flex-start;">
-                  👑 Admin
-                </button>
-                <button type="button" (click)="fillDemo('formateur@felc.com', 'formateur123')" class="btn btn-outline btn-sm" style="font-size: 0.8rem; justify-content: flex-start;">
-                  👨‍🏫 Formateur
-                </button>
-                <button type="button" (click)="fillDemo('entreprise@felc.com', 'entreprise123')" class="btn btn-outline btn-sm" style="font-size: 0.8rem; justify-content: flex-start;">
-                  🏢 Entreprise
-                </button>
-                <button type="button" (click)="fillDemo('apprenant@felc.com', 'apprenant123')" class="btn btn-outline btn-sm" style="font-size: 0.8rem; justify-content: flex-start;">
-                  🎓 Apprenant
-                </button>
-              </div>
-            </div>
-
             <form (ngSubmit)="onSubmit()">
               
               <div class="form-group">
-                <label class="form-label">Adresse E-mail</label>
+                <label class="form-label">Identifiant</label>
                 <input 
-                  type="email" 
+                  type="text" 
                   name="email" 
                   [(ngModel)]="email" 
                   required 
                   class="form-input" 
-                  placeholder="nom@exemple.com"
+                  placeholder="Identifiant ou adresse e-mail"
+                  autocomplete="username"
                 >
               </div>
 
@@ -109,12 +89,6 @@ export class LoginComponent {
   public email = '';
   public motDePasse = '';
   public loading = signal(false);
-
-  fillDemo(email: string, pass: string) {
-    this.email = email;
-    this.motDePasse = pass;
-    this.toast.info(`Identifiants ${email} pré-remplis.`);
-  }
 
   onSubmit() {
     if (!this.email || !this.motDePasse) {

@@ -214,15 +214,18 @@ export interface PortfolioResponse {
 }
 
 export interface AdminStatsResponse {
-  totalUsers: number;
-  totalApprenants: number;
-  totalFormateurs: number;
-  totalEntreprises: number;
-  totalFormations: number;
-  totalSoumissions: number;
-  totalCertificats: number;
-  totalOffres: number;
-  totalCandidatures: number;
+  utilisateurs: number;
+  apprenants: number;
+  formateurs: number;
+  entreprises: number;
+  formations: number;
+  inscriptions: number;
+  inscriptionsTerminees: number;
+  soumissionsEnAttente: number;
+  certificats: number;
+  offresOuvertes: number;
+  offresFermees: number;
+  candidatures: number;
 }
 
 export interface AdminUserResponse {

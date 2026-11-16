@@ -1,6 +1,5 @@
 /* ==========================================================================
-   FELC CYBER-AI DESIGN SYSTEM — Futuristic, Sexy, High-Tech Platform
-   Deep Space Canvas, Neon Luminescence & Glassmorphism
+   FELC — encre, teal, sable. Lisible, calme, léger.
    ========================================================================== */
 
 :root {
@@ -9,24 +8,23 @@
   --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
-  /* Deep Space Canvas */
-  --bg-deep: #030712;
-  --bg-surface: #0b1120;
-  --bg-card: rgba(15, 23, 42, 0.72);
-  --bg-card-hover: rgba(30, 41, 59, 0.85);
+  /* Encre chaude */
+  --bg-deep: #0c1210;
+  --bg-surface: #121a17;
+  --bg-card: #16211d;
+  --bg-card-hover: #1c2b26;
 
-  /* Cyber & Neon Accents */
-  --neon-indigo: #6366f1;
-  --neon-cyan: #06b6d4;
-  --neon-emerald: #10b981;
-  --neon-purple: #a855f7;
-  --neon-amber: #f59e0b;
-  --neon-rose: #f43f5e;
+  /* Accents retenus — les anciens noms restent pour les écrans existants */
+  --neon-indigo: #3d6f86;
+  --neon-cyan: #3dbea6;
+  --neon-emerald: #3d9a74;
+  --neon-purple: #8d7eaa;
+  --neon-amber: #d4b483;
+  --neon-rose: #d08080;
 
-  /* Luminescent Gradients */
-  --grad-cyber: linear-gradient(135deg, #06b6d4 0%, #6366f1 50%, #a855f7 100%);
-  --grad-aurora: linear-gradient(135deg, #10b981 0%, #06b6d4 50%, #6366f1 100%);
-  --grad-sunset: linear-gradient(135deg, #f59e0b 0%, #f43f5e 50%, #a855f7 100%);
+  --grad-cyber: linear-gradient(135deg, #1c6b5c 0%, #24556e 100%);
+  --grad-aurora: linear-gradient(135deg, #1c6b5c 0%, #2f8f78 100%);
+  --grad-sunset: linear-gradient(135deg, #8a6a3b 0%, #6e4e4e 100%);
   --grad-dark: linear-gradient(180deg, rgba(15, 23, 42, 0.9) 0%, rgba(3, 7, 18, 0.95) 100%);
 
   /* Borders & Glows */
@@ -70,12 +68,7 @@ body {
   overflow-x: hidden;
 
   /* Subtle Futuristic Matrix Grid */
-  background-image: 
-    radial-gradient(ellipse at 50% 0%, rgba(99, 102, 241, 0.15) 0%, transparent 60%),
-    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 100% 100%, 36px 36px, 36px 36px;
-  background-attachment: fixed;
+  background-image: linear-gradient(180deg, #101816 0%, #0c1210 28rem);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -86,30 +79,35 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.2;
 }
 
+h1 { font-size: clamp(1.85rem, 4vw, 2.75rem); }
+
 a {
   color: var(--neon-cyan);
   text-decoration: none;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-a:hover {
-  color: #38bdf8;
-  text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+a:hover { color: #8ee8d6; }
+
+:focus-visible {
+  outline: 2px solid #8ee8d6;
+  outline-offset: 3px;
 }
 
-/* Ambient Neon Glow Spheres */
-.ambient-glow-top {
+.skip-link {
   position: absolute;
-  top: -150px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 800px;
-  height: 450px;
-  background: radial-gradient(circle, rgba(99, 102, 241, 0.2) 0%, rgba(6, 182, 212, 0.1) 40%, transparent 70%);
-  filter: blur(80px);
-  pointer-events: none;
-  z-index: 0;
+  left: 1rem;
+  top: -4rem;
+  z-index: 100;
+  background: #f4efe6;
+  color: #14221b;
+  padding: 0.6rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 700;
 }
+
+.skip-link:focus { top: 0.75rem; color: #14221b; }
+
+.ambient-glow-top { display: none; }
 
 /* Layout Utilities */
 .app-container {
@@ -154,24 +152,53 @@ a:hover {
 .grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 
+.nav-desktop { display: none; }
+.role-links, .user-meta { display: flex; }
+.user-meta { flex-direction: column; }
+.nav-burger { display: inline-flex; }
+
 @media (min-width: 768px) {
   .md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .md\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .md\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .md\:flex-row { flex-direction: row; }
+  .md\:flex { display: flex; }
+  .md\:block { display: block; }
+}
+
+@media (min-width: 1100px) {
+  .nav-desktop, .role-links { display: flex; }
+  .user-meta { display: block; }
+  .nav-burger { display: none !important; }
+  .lg\:grid-cols-12 { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+  .lg\:col-span-5 { grid-column: span 5 / span 5; }
+  .lg\:col-span-7 { grid-column: span 7 / span 7; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  .ambient-glow-top { display: none; }
 }
 
 /* Sexy Cyber Cards */
 .card {
   background-color: var(--bg-card);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
   border-radius: var(--radius-xl);
   border: 1px solid var(--border-glass);
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
   overflow: hidden;
   position: relative;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.plan-featured {
+  border-color: rgba(99, 102, 241, 0.55);
+}
+
+.plan-current {
+  outline: 2px solid rgba(16, 185, 129, 0.7);
+  outline-offset: 2px;
 }
 
 .card::before {
@@ -186,9 +213,7 @@ a:hover {
 }
 
 .card-hover:hover {
-  transform: translateY(-4px);
-  border-color: rgba(99, 102, 241, 0.4);
-  box-shadow: 0 15px 35px -5px rgba(99, 102, 241, 0.25);
+  border-color: rgba(61, 190, 166, 0.45);
   background-color: var(--bg-card-hover);
 }
 
@@ -303,11 +328,10 @@ a:hover {
   background: var(--grad-cyber);
   color: #ffffff;
   border: none;
-  box-shadow: 0 0 25px rgba(6, 182, 212, 0.35);
 }
 .btn-cyber:hover {
-  box-shadow: 0 0 35px rgba(6, 182, 212, 0.6);
-  transform: translateY(-2px);
+  filter: brightness(1.08);
+  color: #ffffff;
 }
 
 .btn-outline {

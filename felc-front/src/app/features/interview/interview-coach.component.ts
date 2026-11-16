@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ToastService } from '../../core/services/toast.service';
 import { VoiceService } from '../../core/services/voice.service';
+import { PlanService } from '../../core/services/plan.service';
 
 interface QuestionEntretien {
   id: number;
@@ -45,6 +46,12 @@ interface EvaluationResult {
           </h1>
           <p style="color: #94a3b8; font-size: 1.05rem; line-height: 1.6;">
             Entraînez-vous à répondre aux questions réelles posées par les recruteurs et directeurs techniques. Recevez une analyse immédiate de vos réponses, des pistes de progression et la réponse type attendue.
+          </p>
+          <p style="margin-top: 1rem; color: #cbd5e1; font-size: 0.92rem;">
+            Plan {{ plans.current().nom }} —
+            <span *ngIf="plans.interviewsLeft() === null">analyses illimitées.</span>
+            <span *ngIf="plans.interviewsLeft() !== null">{{ plans.interviewsLeft() }} analyse(s) restante(s) ce mois-ci.</span>
+            <a routerLink="/tarifs"> Changer d’offre</a>
           </p>
         </div>
 
@@ -365,9 +372,15 @@ export class InterviewCoachComponent {
     this.voice.stop();
   }
 
+  public plans = inject(PlanService);
+
   evaluerReponse() {
     const q = this.currentQuestion;
     if (!q || !this.reponseUtilisateur.trim()) return;
+    if (!this.plans.tryConsumeInterview()) {
+      this.toast.info('Quota Communauté atteint pour ce mois. Le plan Talent enlève cette limite.');
+      return;
+    }
 
     this.isEvaluating.set(true);
 

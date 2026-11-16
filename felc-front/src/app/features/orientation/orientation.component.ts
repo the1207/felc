@@ -5,6 +5,7 @@ import { RouterModule, Router } from '@angular/router';
 import { ApiService } from '../../core/services/api.service';
 import { AuthService } from '../../core/services/auth.service';
 import { ToastService } from '../../core/services/toast.service';
+import { PlanService } from '../../core/services/plan.service';
 import { DomaineResponse, OrientationResponse } from '../../core/models/models';
 
 @Component({
@@ -26,7 +27,12 @@ import { DomaineResponse, OrientationResponse } from '../../core/models/models';
             Diagnostic d'Insertion & Parcours IA Sur-Mesure
           </h1>
           <p style="color: #94a3b8; font-size: 1.1rem; max-width: 700px; margin: 0 auto; line-height: 1.6;">
-            Notre algorithme croise vos ambitions réelles avec notre catalogue de cours et les offres du marché de l'emploi pour vous bâtir une trajectoire d'excellence sans hallucination.
+            Le diagnostic s’appuie sur le catalogue réel et les offres ouvertes. Le plan Communauté inclut une orientation par mois. Talent et Organisation retirent ce quota.
+          </p>
+          <p style="margin-top: 0.85rem; color: #cbd5e1;">
+            <span *ngIf="plans.orientationsLeft() === null">Orientations illimitées.</span>
+            <span *ngIf="plans.orientationsLeft() !== null">{{ plans.orientationsLeft() }} orientation restante ce mois-ci.</span>
+            <a routerLink="/tarifs"> Voir les offres</a>
           </p>
         </div>
 
@@ -296,6 +302,7 @@ export class OrientationComponent implements OnInit {
   private auth = inject(AuthService);
   private toast = inject(ToastService);
   private router = inject(Router);
+  public plans = inject(PlanService);
 
   public domaines = signal<DomaineResponse[]>([]);
   public domaineId: number | null = null;
@@ -330,6 +337,12 @@ export class OrientationComponent implements OnInit {
       return;
     }
 
+    if (this.plans.orientationsLeft() === 0) {
+      this.toast.info('Orientation du mois déjà utilisée. Le plan Talent retire cette limite.');
+      this.router.navigate(['/tarifs']);
+      return;
+    }
+
     this.loading.set(true);
     this.api.orienterProfil({
       domaineId: this.domaineId,
@@ -339,6 +352,7 @@ export class OrientationComponent implements OnInit {
     }).subscribe({
       next: (res) => {
         this.loading.set(false);
+        this.plans.tryConsumeOrientation();
         this.result.set(res);
         this.toast.success('Diagnostic neural calculé avec succès !');
       },

@@ -1,7 +1,7 @@
 import { Injectable, inject, signal, computed } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Observable, tap } from 'rxjs';
+import { Observable, map, tap } from 'rxjs';
 import { AuthResponse, Role } from '../models/models';
 
 @Injectable({
@@ -25,26 +25,38 @@ export class AuthService {
   private loadUserFromStorage(): AuthResponse | null {
     try {
       const stored = localStorage.getItem(this.STORAGE_KEY);
-      return stored ? JSON.parse(stored) : null;
+      if (!stored) return null;
+      return this.normalize(JSON.parse(stored));
     } catch {
       return null;
     }
   }
 
   login(credentials: { email: string; motDePasse: string }): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>('/api/auth/login', credentials).pipe(
-      tap(response => {
-        this.saveAuth(response);
-      })
+    return this.http.post<unknown>('/api/auth/login', credentials).pipe(
+      map(response => this.normalize(response)),
+      tap(response => this.saveAuth(response))
     );
   }
 
-  register(data: any): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>('/api/auth/register', data).pipe(
-      tap(response => {
-        this.saveAuth(response);
-      })
+  register(data: unknown): Observable<AuthResponse> {
+    return this.http.post<unknown>('/api/auth/register', data).pipe(
+      map(response => this.normalize(response)),
+      tap(response => this.saveAuth(response))
     );
+  }
+
+  private normalize(response: any): AuthResponse {
+    const user = response?.user ?? response;
+    return {
+      token: response.token,
+      type: response.type ?? 'Bearer',
+      id: user.id,
+      email: user.email,
+      nom: user.nom,
+      prenom: user.prenom,
+      role: user.role
+    };
   }
 
   private saveAuth(response: AuthResponse) {

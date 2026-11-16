@@ -22,78 +22,32 @@ import { FormationResponse, OffreResponse } from '../../core/models/models';
           <div style="max-width: 900px; margin: 0 auto; text-align: center;">
             
             <!-- Futuristic Badge -->
-            <div style="display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.45rem 1.25rem; border-radius: var(--radius-full); background: rgba(99, 102, 241, 0.12); border: 1px solid rgba(99, 102, 241, 0.35); color: #c7d2fe; font-size: 0.85rem; font-weight: 700; font-family: var(--font-display); letter-spacing: 0.04em; margin-bottom: 2rem; backdrop-filter: blur(12px); box-shadow: 0 0 20px rgba(99, 102, 241, 0.2);">
-              <span class="pulsing-dot"></span>
-              <span>PLATEFORME EDTECH & IA D'INSERTION PROFESSIONNELLE</span>
+            <div class="badge badge-slate" style="margin-bottom: 1.5rem;">
+              Formation pratique, preuve vérifiable, emploi en FCFA
             </div>
 
-            <!-- Main Title with Cyber Gradient -->
-            <h1 style="font-size: 3.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -0.04em;">
-              Du premier projet au <br>
-              <span style="background: var(--grad-cyber); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 30px rgba(99, 102, 241, 0.3);">
-                premier contrat rémunéré.
-              </span>
+            <h1 style="font-size: 3.25rem; font-weight: 800; line-height: 1.08; margin-bottom: 1.25rem; letter-spacing: -0.04em;">
+              Un métier se prouve<br>par ce que vous avez construit.
             </h1>
 
-            <p style="font-size: 1.2rem; color: #94a3b8; line-height: 1.6; margin-bottom: 2.75rem; max-width: 760px; margin-left: auto; margin-right: auto; font-weight: 400;">
-              Oubliez les QCM théoriques passifs. Développez des projets concrets, faites évaluer vos dépôts GitHub en <strong>temps réel par l'IA Claude</strong>, décrochez un certificat infalsifiable et postulez aux opportunités des entreprises en FCFA.
+            <p style="font-size: 1.15rem; color: #94a3b8; line-height: 1.65; margin-bottom: 2rem; max-width: 680px; margin-left: auto; margin-right: auto;">
+              FELC accompagne un jeune francophone du premier exercice jusqu’à une candidature.
+              Le parcours Communauté est gratuit. Les outils d’accélération — orientation répétée, entretiens, CV exportable — sont dans les plans Talent et Organisation.
             </p>
 
-            <!-- Action Buttons -->
-            <div style="display: flex; align-items: center; justify-content: center; gap: 1.25rem; flex-wrap: wrap;">
-              <a routerLink="/orientation" class="btn btn-cyber btn-lg" style="box-shadow: 0 0 35px rgba(6, 182, 212, 0.5);">
-                ✨ Lancer le Diagnostic IA
-              </a>
-              <a routerLink="/interview-coach" class="btn btn-outline btn-lg" style="border-color: rgba(6, 182, 212, 0.4); color: #67e8f9;">
-                🎯 Simulateur d'Entretien IA
-              </a>
-              <a routerLink="/cv-builder" class="btn btn-outline btn-lg" style="border-color: rgba(99, 102, 241, 0.4); color: #c7d2fe;">
-                📄 Générateur de CV Pro
-              </a>
-              <a routerLink="/formations" class="btn btn-outline btn-lg">
-                📚 Formations Pratiques
-              </a>
-              <a routerLink="/certificats/verify" class="btn btn-outline btn-lg" style="border-color: rgba(245, 158, 11, 0.4); color: #fde68a;">
-                🛡️ Vérifier un Certificat
-              </a>
-            </div>
-
-            <!-- Demo Accounts Pill for Hackathon Evaluators -->
-            <div style="margin-top: 2.5rem; padding: 0.85rem 1.5rem; background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: var(--radius-xl); display: inline-flex; align-items: center; gap: 1rem; flex-wrap: wrap; backdrop-filter: blur(16px);">
-              <span style="font-size: 0.775rem; color: var(--neon-amber); font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em;">
-                ⚡ Comptes Démo Hackathon :
-              </span>
-              <span style="font-size: 0.825rem; color: #cbd5e1;">👑 Admin (admin&#64;felc.com)</span>
-              <span style="font-size: 0.825rem; color: #cbd5e1;">👨‍🏫 Formateur (formateur&#64;felc.com)</span>
-              <span style="font-size: 0.825rem; color: #cbd5e1;">🏢 Entreprise (entreprise&#64;felc.com)</span>
-              <span style="font-size: 0.825rem; color: #cbd5e1;">🎓 Apprenant (apprenant&#64;felc.com)</span>
+            <div style="display: flex; align-items: center; justify-content: center; gap: 0.85rem; flex-wrap: wrap;">
+              <a routerLink="/parcours" class="btn btn-cyber btn-lg">Suivre le parcours</a>
+              <a routerLink="/auth/register" class="btn btn-outline btn-lg">Commencer gratuitement</a>
+              <a routerLink="/tarifs" class="btn btn-ghost btn-lg">Comparer les offres</a>
             </div>
 
           </div>
 
-          <!-- Cyber Terminal Mockup: Live AI Code Review Preview -->
-          <div style="max-width: 920px; margin: 4.5rem auto 0 auto;">
-            <div class="terminal-window">
-              <div class="terminal-header">
-                <span class="terminal-dot dot-red"></span>
-                <span class="terminal-dot dot-yellow"></span>
-                <span class="terminal-dot dot-green"></span>
-                <span style="margin-left: 0.75rem; color: #94a3b8; font-size: 0.75rem;">felc-ai-engine &#64; claude-sonnet-5-5 — bash — 80x24</span>
-              </div>
-              <div class="terminal-body">
-                <div style="color: #94a3b8;"><span style="color: #38bdf8;">felc-eval</span> --github https://github.com/apprenant-felc/spring-ecommerce --criteria STRICT</div>
-                <div style="color: #a855f7; margin-top: 0.4rem;">[AI-ORCHESTRATOR] ⚡ Initializing Anthropic Claude 3.5 Sonnet model... Connected.</div>
-                <div style="color: #06b6d4;">[GIT-INSPECTOR]  📁 Clonage virtuel : 18 fichiers Java, README.md, pom.xml détectés.</div>
-                <div style="color: #10b981;">[STATIC-ANALYSIS] ✔ Architecture Hexagonale respectée | Sécurité JWT sans état confirmée.</div>
-                <div style="color: #e2e8f0; margin-top: 0.4rem; padding-left: 1rem; border-left: 2px solid #10b981;">
-                  <strong style="color: #34d399;">NOTE ATTRIBUÉE : 94 / 100</strong><br>
-                  <span style="color: #cbd5e1;">"Excellente gestion des exceptions avec GlobalExceptionHandler et tests d'intégration complets. Critères validés."</span>
-                </div>
-                <div style="color: #facc15; margin-top: 0.5rem; font-weight: 700;">
-                  🏆 STATUT: VALIDÉE ➔ Certificat émis : FELC-INFO-000042 (Vérifiable publiquement)
-                </div>
-              </div>
-            </div>
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-4" style="margin-top: 3rem; text-align: left;">
+            <a routerLink="/parcours" class="card card-hover"><div class="card-body"><strong>1. Apprendre</strong><p style="color: var(--text-muted); margin-top: 0.4rem;">Une formation, un livrable.</p></div></a>
+            <a routerLink="/mes-formations" class="card card-hover"><div class="card-body"><strong>2. Prouver</strong><p style="color: var(--text-muted); margin-top: 0.4rem;">Dépôt relu, puis certificat.</p></div></a>
+            <a routerLink="/portfolio/me" class="card card-hover"><div class="card-body"><strong>3. Montrer</strong><p style="color: var(--text-muted); margin-top: 0.4rem;">Portfolio et CV sur ces preuves.</p></div></a>
+            <a routerLink="/offres" class="card card-hover"><div class="card-body"><strong>4. Postuler</strong><p style="color: var(--text-muted); margin-top: 0.4rem;">Offres et missions en FCFA.</p></div></a>
           </div>
 
         </div>
@@ -104,20 +58,20 @@ import { FormationResponse, OffreResponse } from '../../core/models/models';
         <div class="app-container">
           <div class="grid grid-cols-2 md:grid-cols-4 gap-6" style="text-align: center;">
             <div>
-              <div style="font-size: 2.5rem; font-weight: 800; font-family: var(--font-display); background: var(--grad-cyber); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">100%</div>
-              <div style="font-size: 0.8rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em;">Pratique par projet réel</div>
+              <div style="font-size: 1.35rem; font-weight: 800; font-family: var(--font-display);">1. Apprendre</div>
+              <div style="font-size: 0.85rem; color: #94a3b8;">Exercices et projet, pas un quiz isolé</div>
             </div>
             <div>
-              <div style="font-size: 2.5rem; font-weight: 800; font-family: var(--font-display); color: #34d399; text-shadow: 0 0 20px rgba(52, 211, 153, 0.4);">&lt; 15s</div>
-              <div style="font-size: 0.8rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em;">Correction IA Claude</div>
+              <div style="font-size: 1.35rem; font-weight: 800; font-family: var(--font-display);">2. Prouver</div>
+              <div style="font-size: 0.85rem; color: #94a3b8;">Dépôt relu, note, certificat vérifiable</div>
             </div>
             <div>
-              <div style="font-size: 2.5rem; font-weight: 800; font-family: var(--font-display); color: #facc15; text-shadow: 0 0 20px rgba(250, 204, 21, 0.4);">FELC-ID</div>
-              <div style="font-size: 0.8rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em;">Certificat Infalsifiable</div>
+              <div style="font-size: 1.35rem; font-weight: 800; font-family: var(--font-display);">3. Se montrer</div>
+              <div style="font-size: 0.85rem; color: #94a3b8;">Portfolio et CV construits sur ces preuves</div>
             </div>
             <div>
-              <div style="font-size: 2.5rem; font-weight: 800; font-family: var(--font-display); color: #a855f7; text-shadow: 0 0 20px rgba(168, 85, 247, 0.4);">FCFA</div>
-              <div style="font-size: 0.8rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em;">Rémunération Immédiate</div>
+              <div style="font-size: 1.35rem; font-weight: 800; font-family: var(--font-display);">4. Postuler</div>
+              <div style="font-size: 0.85rem; color: #94a3b8;">Offres et missions affichées en FCFA</div>
             </div>
           </div>
         </div>
@@ -197,6 +151,13 @@ import { FormationResponse, OffreResponse } from '../../core/models/models';
             </a>
           </div>
 
+          <div *ngIf="apiIndisponible() && formations().length === 0" class="card" style="margin-bottom: 1.5rem;">
+            <div class="card-body">
+              <h3 style="font-size: 1.15rem; margin-bottom: 0.4rem;">Le catalogue n’est pas joignable</h3>
+              <p style="color: var(--text-muted);">Le serveur des formations ne répond pas. Le parcours, la fiche de sept jours, les tarifs et le générateur de CV restent utilisables.</p>
+              <a routerLink="/parcours" style="display: inline-block; margin-top: 0.8rem;">Continuer sur le parcours</a>
+            </div>
+          </div>
           <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div *ngFor="let formation of formations()" class="card card-hover">
               <div class="card-body" style="display: flex; flex-direction: column; height: 100%;">
@@ -266,7 +227,7 @@ import { FormationResponse, OffreResponse } from '../../core/models/models';
                 </div>
 
                 <p style="font-size: 0.9rem; color: #94a3b8; line-height: 1.6; margin-bottom: 1.5rem;">
-                  {{ offre.description.slice(0, 115) }}...
+                  {{ apercu(offre.description, 115) }}
                 </p>
 
                 <div style="display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 1rem;">
@@ -358,19 +319,16 @@ import { FormationResponse, OffreResponse } from '../../core/models/models';
       <!-- Futuristic Call To Action -->
       <section style="padding: 5rem 0; position: relative; border-top: 1px solid rgba(255, 255, 255, 0.08); background: radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.15) 0%, transparent 70%);">
         <div class="app-container" style="max-width: 750px; text-align: center;">
-          <h2 style="font-size: 2.75rem; color: #ffffff; margin-bottom: 1.25rem;">
-            Prêt à propulser votre carrière avec l'IA ?
+            <h2 style="font-size: 2.4rem; color: #ffffff; margin-bottom: 1rem;">
+            Le gratuit ouvre la porte. Le premium accélère la sortie.
           </h2>
-          <p style="font-size: 1.15rem; color: #94a3b8; margin-bottom: 2.5rem; line-height: 1.6;">
-            Créez votre compte gratuit, testez vos compétences et rejoignez la nouvelle génération de talents d'Afrique francophone.
+          <p style="font-size: 1.05rem; color: #94a3b8; margin-bottom: 2rem; line-height: 1.65;">
+            Communauté à 0 FCFA. Talent à 2 500 FCFA par mois pour l’orientation, les entretiens et le CV.
+            Organisation à 15 000 FCFA par mois pour une entreprise ou un formateur. Tarifs proposés, sans prélèvement dans cette version.
           </p>
-          <div style="display: flex; justify-content: center; gap: 1.25rem; flex-wrap: wrap;">
-            <a routerLink="/auth/register" class="btn btn-cyber btn-lg">
-              Rejoindre FELC Gratuitement ⚡
-            </a>
-            <a routerLink="/orientation" class="btn btn-outline btn-lg">
-              Diagnostic d'Orientation IA
-            </a>
+          <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+            <a routerLink="/tarifs" class="btn btn-cyber btn-lg">Voir les trois offres</a>
+            <a routerLink="/auth/register" class="btn btn-outline btn-lg">Créer un compte</a>
           </div>
         </div>
       </section>
@@ -384,17 +342,23 @@ export class HomeComponent implements OnInit {
 
   public formations = signal<FormationResponse[]>([]);
   public offres = signal<OffreResponse[]>([]);
+  public apiIndisponible = signal(false);
 
   ngOnInit() {
     this.api.getFormations().subscribe({
       next: data => this.formations.set(data),
-      error: () => {}
+      error: () => this.apiIndisponible.set(true)
     });
 
     this.api.getOffres().subscribe({
       next: data => this.offres.set(data),
-      error: () => {}
+      error: () => this.apiIndisponible.set(true)
     });
+  }
+
+  apercu(texte: string | undefined, max: number): string {
+    if (!texte) return '';
+    return texte.length > max ? texte.slice(0, max) + '…' : texte;
   }
 
   getNiveauBadgeClass(niveau: string): string {

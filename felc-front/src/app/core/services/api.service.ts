@@ -193,8 +193,8 @@ export class ApiService {
     return this.http.post<MessageForumResponse>(`/api/forum/sujets/${sujetId}/messages`, data);
   }
 
-  marquerSolution(messageId: number): Observable<MessageForumResponse> {
-    return this.http.put<MessageForumResponse>(`/api/forum/messages/${messageId}/solution`, {});
+  marquerSolution(sujetId: number, messageId: number): Observable<MessageForumResponse> {
+    return this.http.put<MessageForumResponse>(`/api/forum/sujets/${sujetId}/messages/${messageId}/solution`, {});
   }
 
   // ==================== ADMIN ====================

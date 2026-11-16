@@ -9,8 +9,9 @@ import { ToastContainerComponent } from './shared/components/toast-container.com
   standalone: true,
   imports: [RouterOutlet, NavbarComponent, FooterComponent, ToastContainerComponent],
   template: `
+    <a class="skip-link" href="#contenu">Aller au contenu</a>
     <app-navbar></app-navbar>
-    <main class="main-content">
+    <main id="contenu" class="main-content">
       <router-outlet></router-outlet>
     </main>
     <app-footer></app-footer>

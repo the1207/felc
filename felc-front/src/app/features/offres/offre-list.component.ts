@@ -106,7 +106,7 @@ import { OffreResponse, DomaineResponse, TypeOffre } from '../../core/models/mod
               </div>
 
               <p style="color: #94a3b8; font-size: 0.9rem; line-height: 1.6; margin-bottom: 1.5rem; flex: 1;">
-                {{ off.description.slice(0, 120) }}...
+                {{ apercu(off.description) }}
               </p>
 
               <div style="background: rgba(255, 255, 255, 0.03); border-radius: var(--radius-lg); padding: 0.75rem 1rem; margin-bottom: 1.25rem; display: flex; justify-content: space-between; font-size: 0.85rem; color: #94a3b8;">
@@ -186,6 +186,11 @@ export class OffreListComponent implements OnInit {
 
     return list;
   });
+
+  apercu(texte?: string): string {
+    if (!texte) return '';
+    return texte.length > 120 ? texte.slice(0, 120) + '…' : texte;
+  }
 
   ngOnInit() {
     this.api.getOffres().subscribe({

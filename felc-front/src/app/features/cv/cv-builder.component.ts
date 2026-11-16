@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 import { ApiService } from '../../core/services/api.service';
 import { ToastService } from '../../core/services/toast.service';
+import { PlanService } from '../../core/services/plan.service';
 import { CertificatResponse, InscriptionResponse } from '../../core/models/models';
 
 interface ExperienceItem {
@@ -37,9 +38,10 @@ interface ExperienceItem {
           </p>
 
           <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 1.75rem;">
-            <button (click)="imprimerCv()" class="btn btn-cyber btn-lg" style="box-shadow: 0 0 25px rgba(6, 182, 212, 0.4);">
-              🖨️ Télécharger en PDF / Imprimer mon CV
+            <button (click)="imprimerCv()" class="btn btn-cyber btn-lg">
+              {{ plans.canExportCv() ? 'Télécharger en PDF / Imprimer' : 'Export PDF réservé au plan Talent' }}
             </button>
+            <a *ngIf="!plans.canExportCv()" routerLink="/tarifs" class="btn btn-outline btn-lg">Voir les offres</a>
           </div>
         </div>
 
@@ -443,7 +445,13 @@ export class CvBuilderComponent implements OnInit {
     this.experiences.splice(index, 1);
   }
 
+  public plans = inject(PlanService);
+
   imprimerCv() {
+    if (!this.plans.canExportCv()) {
+      this.toast.info('Le plan Communauté permet de rédiger le CV. L’export PDF est inclus dans Talent.');
+      return;
+    }
     if (typeof window !== 'undefined') {
       window.print();
     }

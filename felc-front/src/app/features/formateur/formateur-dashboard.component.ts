@@ -98,7 +98,7 @@ import { FormationResponse, DomaineResponse, SoumissionResponse } from '../../co
                 </div>
                 <h3 style="font-size: 1.35rem; margin-bottom: 0.5rem; color: #ffffff;">{{ form.titre }}</h3>
                 <p style="font-size: 0.9rem; color: #94a3b8; line-height: 1.6; margin-bottom: 1.5rem;">
-                  {{ form.description.slice(0, 110) }}...
+                  {{ apercu(form.description) }}
                 </p>
                 <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 1rem;">
                   <a [routerLink]="['/formations', form.id]" class="btn btn-outline btn-sm">
@@ -282,6 +282,11 @@ export class FormateurDashboardComponent implements OnInit {
     ordre: 1,
     projetFinal: false
   };
+
+  apercu(texte?: string): string {
+    if (!texte) return '';
+    return texte.length > 110 ? texte.slice(0, 110) + '…' : texte;
+  }
 
   ngOnInit() {
     this.chargerDonnees();

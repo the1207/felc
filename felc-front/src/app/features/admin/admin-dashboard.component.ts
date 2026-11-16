@@ -37,9 +37,9 @@ import { AdminStatsResponse, AdminUserResponse, OffreResponse, DomaineResponse }
           <div class="card" style="border-top: 3px solid var(--neon-cyan); box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8);">
             <div class="card-body">
               <div style="font-size: 0.75rem; font-weight: 800; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em;">Total Utilisateurs</div>
-              <div style="font-size: 2.5rem; font-weight: 800; color: #ffffff; font-family: var(--font-display); margin: 0.35rem 0;">{{ s.totalUsers }}</div>
+              <div style="font-size: 2.5rem; font-weight: 800; color: #ffffff; font-family: var(--font-display); margin: 0.35rem 0;">{{ s.utilisateurs }}</div>
               <div style="font-size: 0.8rem; color: var(--neon-cyan);">
-                🎓 {{ s.totalApprenants }} Appr. • 👨‍🏫 {{ s.totalFormateurs }} Form. • 🏢 {{ s.totalEntreprises }} Entr.
+                {{ s.apprenants }} apprenants · {{ s.formateurs }} formateurs · {{ s.entreprises }} entreprises
               </div>
             </div>
           </div>
@@ -47,9 +47,9 @@ import { AdminStatsResponse, AdminUserResponse, OffreResponse, DomaineResponse }
           <div class="card" style="border-top: 3px solid var(--neon-emerald); box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8);">
             <div class="card-body">
               <div style="font-size: 0.75rem; font-weight: 800; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em;">Formations & Soumissions</div>
-              <div style="font-size: 2.5rem; font-weight: 800; color: #34d399; font-family: var(--font-display); margin: 0.35rem 0;">{{ s.totalFormations }}</div>
+              <div style="font-size: 2.5rem; font-weight: 800; color: #34d399; font-family: var(--font-display); margin: 0.35rem 0;">{{ s.formations }}</div>
               <div style="font-size: 0.8rem; color: #94a3b8;">
-                💻 {{ s.totalSoumissions }} soumissions de code évaluées
+                {{ s.soumissionsEnAttente }} soumissions en attente · {{ s.inscriptions }} inscriptions
               </div>
             </div>
           </div>
@@ -57,7 +57,7 @@ import { AdminStatsResponse, AdminUserResponse, OffreResponse, DomaineResponse }
           <div class="card" style="border-top: 3px solid var(--neon-amber); box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8);">
             <div class="card-body">
               <div style="font-size: 0.75rem; font-weight: 800; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em;">Certificats Délivrés</div>
-              <div style="font-size: 2.5rem; font-weight: 800; color: #facc15; font-family: var(--font-display); margin: 0.35rem 0;">{{ s.totalCertificats }}</div>
+              <div style="font-size: 2.5rem; font-weight: 800; color: #facc15; font-family: var(--font-display); margin: 0.35rem 0;">{{ s.certificats }}</div>
               <div style="font-size: 0.8rem; color: #94a3b8;">
                 📜 Diplômes uniques infalsifiables
               </div>
@@ -67,9 +67,9 @@ import { AdminStatsResponse, AdminUserResponse, OffreResponse, DomaineResponse }
           <div class="card" style="border-top: 3px solid var(--neon-purple); box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8);">
             <div class="card-body">
               <div style="font-size: 0.75rem; font-weight: 800; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em;">Offres & Candidatures</div>
-              <div style="font-size: 2.5rem; font-weight: 800; color: #d8b4fe; font-family: var(--font-display); margin: 0.35rem 0;">{{ s.totalOffres }}</div>
+              <div style="font-size: 2.5rem; font-weight: 800; color: #d8b4fe; font-family: var(--font-display); margin: 0.35rem 0;">{{ s.offresOuvertes }}</div>
               <div style="font-size: 0.8rem; color: #94a3b8;">
-                📩 {{ s.totalCandidatures }} candidatures enregistrées
+                {{ s.candidatures }} candidatures · {{ s.offresFermees }} offres fermées
               </div>
             </div>
           </div>

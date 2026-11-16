@@ -13,8 +13,8 @@ import { RouterModule } from '@angular/router';
           <!-- Column 1: Brand Info -->
           <div style="display: flex; flex-direction: column; gap: 1.25rem;">
             <div style="display: flex; align-items: center; gap: 0.85rem;">
-              <div style="width: 2.5rem; height: 2.5rem; border-radius: var(--radius-lg); background: var(--grad-cyber); display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: 1.15rem; box-shadow: 0 0 15px rgba(6, 182, 212, 0.4);">
-                ⚡
+              <div style="width: 2.5rem; height: 2.5rem; border-radius: var(--radius-lg); background: var(--grad-cyber); display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-family: var(--font-display);">
+                F
               </div>
               <span style="font-family: var(--font-display); font-size: 1.4rem; font-weight: 800; color: #ffffff;">
                 FELC<span style="color: var(--neon-cyan);">.AI</span>
@@ -32,6 +32,8 @@ import { RouterModule } from '@angular/router';
           <div>
             <h4 style="color: #ffffff; font-size: 1rem; margin-bottom: 1.25rem; font-family: var(--font-display);">Filières & Pratique</h4>
             <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.9rem;">
+              <li><a routerLink="/parcours" style="color: #94a3b8;">Parcours en huit étapes</a></li>
+              <li><a routerLink="/tarifs" style="color: #94a3b8;">Offres Communauté, Talent, Organisation</a></li>
               <li><a routerLink="/formations" style="color: #94a3b8;">Catalogue de Formations</a></li>
               <li><a routerLink="/orientation" style="color: var(--neon-cyan); font-weight: 700;">✨ Diagnostic & Orientation IA</a></li>
               <li><a routerLink="/mes-formations" style="color: #94a3b8;">Projets Pratiques & GitHub</a></li>

@@ -221,7 +221,7 @@ import { SujetResponse, SujetDetailResponse, DomaineResponse } from '../../core/
                 </h3>
 
                 <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.25rem;">
-                  {{ s.contenu.slice(0, 160) }}...
+                  {{ apercu(s.contenu) }}
                 </p>
 
                 <div style="display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 1rem; font-size: 0.85rem; color: #64748b;">
@@ -396,8 +396,15 @@ export class ForumComponent implements OnInit {
     });
   }
 
+  apercu(texte?: string): string {
+    if (!texte) return 'Ouvrir la discussion pour lire le message.';
+    return texte.length > 160 ? texte.slice(0, 160) + '…' : texte;
+  }
+
   marquerSolution(messageId: number) {
-    this.api.marquerSolution(messageId).subscribe({
+    const sujetId = this.selectedSujet()?.id;
+    if (!sujetId) return;
+    this.api.marquerSolution(sujetId, messageId).subscribe({
       next: () => {
         this.toast.success('Réponse validée comme solution acceptée ! 🏆');
         const sId = this.selectedSujet()?.id;

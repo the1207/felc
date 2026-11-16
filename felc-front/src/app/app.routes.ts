@@ -1,71 +1,29 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './features/home/home.component';
-import { LoginComponent } from './features/auth/login.component';
-import { RegisterComponent } from './features/auth/register.component';
-import { OrientationComponent } from './features/orientation/orientation.component';
-import { FormationListComponent } from './features/formations/formation-list.component';
-import { FormationDetailComponent } from './features/formations/formation-detail.component';
-import { MesFormationsComponent } from './features/formations/mes-formations.component';
-import { MesCertificatsComponent } from './features/certificats/mes-certificats.component';
-import { VerifyCertificatComponent } from './features/certificats/verify-certificat.component';
-import { OffreListComponent } from './features/offres/offre-list.component';
-import { OffreDetailComponent } from './features/offres/offre-detail.component';
-import { EntrepriseOffresComponent } from './features/offres/entreprise-offres.component';
-import { ForumComponent } from './features/forum/forum.component';
-import { PortfolioComponent } from './features/portfolio/portfolio.component';
-import { FormateurDashboardComponent } from './features/formateur/formateur-dashboard.component';
-import { AdminDashboardComponent } from './features/admin/admin-dashboard.component';
-import { ImpactComponent } from './features/impact/impact.component';
-import { BoursesComponent } from './features/bourses/bourses.component';
-import { InterviewCoachComponent } from './features/interview/interview-coach.component';
-import { CvBuilderComponent } from './features/cv/cv-builder.component';
 import { authGuard, roleGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent },
-  
-  // Outils Concrets d'Emploi & Carrière
-  { path: 'interview-coach', component: InterviewCoachComponent },
-  { path: 'cv-builder', component: CvBuilderComponent },
-
-  // Inclusion & Terrains
-  { path: 'impact', component: ImpactComponent },
-  { path: 'bourses', component: BoursesComponent },
-
-  // Auth
-  { path: 'auth/login', component: LoginComponent },
-  { path: 'auth/register', component: RegisterComponent },
-
-  // Orientation IA
-  { path: 'orientation', component: OrientationComponent },
-
-  // Formations & Exercices
-  { path: 'formations', component: FormationListComponent },
-  { path: 'formations/:id', component: FormationDetailComponent },
-  { path: 'mes-formations', component: MesFormationsComponent, canActivate: [authGuard] },
-
-  // Certificats
-  { path: 'mes-certificats', component: MesCertificatsComponent, canActivate: [authGuard] },
-  { path: 'certificats/verify', component: VerifyCertificatComponent },
-
-  // Emploi & Recrutement
-  { path: 'offres', component: OffreListComponent },
-  { path: 'offres/:id', component: OffreDetailComponent },
-  { path: 'entreprise/offres', component: EntrepriseOffresComponent, canActivate: [roleGuard(['ENTREPRISE', 'ADMIN'])] },
-
-  // Forum Communautaire
-  { path: 'forum', component: ForumComponent },
-
-  // Portfolio
-  { path: 'portfolio/me', component: PortfolioComponent, canActivate: [authGuard] },
-  { path: 'portfolio/:id', component: PortfolioComponent },
-
-  // Formateur
-  { path: 'formateur/dashboard', component: FormateurDashboardComponent, canActivate: [roleGuard(['FORMATEUR', 'ADMIN'])] },
-
-  // Admin
-  { path: 'admin', component: AdminDashboardComponent, canActivate: [roleGuard(['ADMIN'])] },
-
-  // Fallback
+  { path: '', title: 'Accueil', loadComponent: () => import('./features/home/home.component').then(m => m.HomeComponent) },
+  { path: 'parcours', title: 'Parcours', loadComponent: () => import('./features/parcours/parcours.component').then(m => m.ParcoursComponent) },
+  { path: 'tarifs', title: 'Tarifs', loadComponent: () => import('./features/pricing/pricing.component').then(m => m.PricingComponent) },
+  { path: 'interview-coach', title: 'Entretien', loadComponent: () => import('./features/interview/interview-coach.component').then(m => m.InterviewCoachComponent) },
+  { path: 'cv-builder', title: 'CV', loadComponent: () => import('./features/cv/cv-builder.component').then(m => m.CvBuilderComponent) },
+  { path: 'impact', title: 'Impact', loadComponent: () => import('./features/impact/impact.component').then(m => m.ImpactComponent) },
+  { path: 'bourses', title: 'Bourses', loadComponent: () => import('./features/bourses/bourses.component').then(m => m.BoursesComponent) },
+  { path: 'auth/login', title: 'Connexion', loadComponent: () => import('./features/auth/login.component').then(m => m.LoginComponent) },
+  { path: 'auth/register', title: 'Inscription', loadComponent: () => import('./features/auth/register.component').then(m => m.RegisterComponent) },
+  { path: 'orientation', title: 'Orientation', loadComponent: () => import('./features/orientation/orientation.component').then(m => m.OrientationComponent) },
+  { path: 'formations', title: 'Formations', loadComponent: () => import('./features/formations/formation-list.component').then(m => m.FormationListComponent) },
+  { path: 'formations/:id', title: 'Formation', loadComponent: () => import('./features/formations/formation-detail.component').then(m => m.FormationDetailComponent) },
+  { path: 'mes-formations', title: 'Mes formations', loadComponent: () => import('./features/formations/mes-formations.component').then(m => m.MesFormationsComponent), canActivate: [authGuard] },
+  { path: 'mes-certificats', title: 'Mes certificats', loadComponent: () => import('./features/certificats/mes-certificats.component').then(m => m.MesCertificatsComponent), canActivate: [authGuard] },
+  { path: 'certificats/verify', title: 'Vérifier un certificat', loadComponent: () => import('./features/certificats/verify-certificat.component').then(m => m.VerifyCertificatComponent) },
+  { path: 'offres', title: 'Emploi', loadComponent: () => import('./features/offres/offre-list.component').then(m => m.OffreListComponent) },
+  { path: 'offres/:id', title: 'Offre', loadComponent: () => import('./features/offres/offre-detail.component').then(m => m.OffreDetailComponent) },
+  { path: 'entreprise/offres', title: 'Mes offres', loadComponent: () => import('./features/offres/entreprise-offres.component').then(m => m.EntrepriseOffresComponent), canActivate: [roleGuard(['ENTREPRISE', 'ADMIN'])] },
+  { path: 'forum', title: 'Forum', loadComponent: () => import('./features/forum/forum.component').then(m => m.ForumComponent) },
+  { path: 'portfolio/me', title: 'Mon portfolio', loadComponent: () => import('./features/portfolio/portfolio.component').then(m => m.PortfolioComponent), canActivate: [authGuard] },
+  { path: 'portfolio/:id', title: 'Portfolio', loadComponent: () => import('./features/portfolio/portfolio.component').then(m => m.PortfolioComponent) },
+  { path: 'formateur/dashboard', title: 'Espace formateur', loadComponent: () => import('./features/formateur/formateur-dashboard.component').then(m => m.FormateurDashboardComponent), canActivate: [roleGuard(['FORMATEUR', 'ADMIN'])] },
+  { path: 'admin', title: 'Administration', loadComponent: () => import('./features/admin/admin-dashboard.component').then(m => m.AdminDashboardComponent), canActivate: [roleGuard(['ADMIN'])] },
   { path: '**', redirectTo: '' }
 ];
