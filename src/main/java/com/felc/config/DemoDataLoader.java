@@ -60,7 +60,8 @@ public class DemoDataLoader implements CommandLineRunner {
 
         Domaine informatique = creerDomaine("Informatique", "INFO", "Développement, bases de données, réseaux");
         creerDomaine("Marketing digital", "MKT", "Réseaux sociaux, publicité en ligne, création de contenu");
-        creerDomaine("Agriculture", "AGRI", "Techniques agricoles, transformation et vente de produits");
+        Domaine agriculture = creerDomaine("Agriculture & Agrotech", "AGRI", "Techniques agricoles durables, irrigation solaire, transformation et traçabilité");
+        Domaine energie = creerDomaine("Énergie Solaire & Green Tech", "ENER", "Dimensionnement photovoltaïque, micro-réseaux ruraux et transition énergétique");
 
         Formation api = creerFormation(formateur, "API REST avec Spring Boot : construis une API de gestion de tâches",
                 "Formation 100 % pratique : tu codes une vraie API, exercice après exercice.",
@@ -91,6 +92,38 @@ public class DemoDataLoader implements CommandLineRunner {
         creerExercice(angular, 3, true, "Projet final : mini-application",
                 "Assemble liste, ajout, modification, suppression et connexion utilisateur, puis publie le tout.",
                 "Toutes les actions fonctionnent. Connexion obligatoire. Application publiée avec un lien dans le README.");
+
+        // Formation Agrotech & Climat (ODD 2 & 13)
+        Formation agro = creerFormation(formateur, "Agrotechnologie : Automatisation d'Irrigation Solaire pour Maraîchage",
+                "Formation 100% pratique pour le climat : code le pilotage automatique d'une pompe solaire à partir de capteurs d'humidité du sol.",
+                Niveau.DEBUTANT, agriculture);
+        creerModule(agro, 1, "Architecture du système IoT agricole", "Comprendre les capteurs d'humidité de sol, les relais 12V pour pompe solaire et le microcontrôleur ESP32.");
+        creerModule(agro, 2, "Algorithme d'économie d'eau et seuils d'arrosage", "Calculer l'évapotranspiration et déclencher l'irrigation aux heures optimales.");
+        creerExercice(agro, 1, false, "Lecture des capteurs et affichage",
+                "Écris le script de lecture des sondes d'humidité et affiche l'état d'hydratation du sol.",
+                "Code clair avec commentaires. Détection correcte des 3 plages (sec, optimal, saturé). Dépôt GitHub public.");
+        creerExercice(agro, 2, false, "Pilotage de la vanne et sécurité thermique",
+                "Implémente la logique d'activation de la pompe solaire avec coupure de sécurité en cas de réservoir vide.",
+                "Arrêt automatique si niveau bas. Journalisation des cycles d'arrosage.");
+        creerExercice(agro, 3, true, "Projet final : Contrôleur d'irrigation autonome",
+                "Assemble le système complet avec tableau de bord web frugal permettant à la coopérative de suivre l'état de l'eau.",
+                "Projet complet avec documentation d'installation terrain, schéma de câblage et code commenté.");
+
+        // Formation Énergie Solaire Rurale (ODD 7 & 13)
+        Formation solaire = creerFormation(formateur, "Énergie Solaire : Dimensionnement et Suivi IoT de Micro-Réseau Rural",
+                "Formation pratique : dimensionne une installation photovoltaïque autonome et développe son tableau de bord de télémétrie.",
+                Niveau.INTERMEDIAIRE, energie);
+        creerModule(solaire, 1, "Bilan des puissances et dimensionnement", "Calculer les besoins journaliers en Wh, l'ensoleillement régional au Togo (kWh/m²/j) et le parc de batteries.");
+        creerModule(solaire, 2, "Télémétrie et prévention des pannes", "Collecter les données de tension, courant et état de charge (SOC) pour éviter les coupures de courant.");
+        creerExercice(solaire, 1, false, "Calculateur de dimensionnement solaire",
+                "Crée un module ou script calculant le nombre de panneaux et la capacité de batterie nécessaire selon les appareils renseignés.",
+                "Formules exactes respectant les normes de décharge (max 50% pour batteries plomb, 80% lithium). Code testé.");
+        creerExercice(solaire, 2, false, "Alerte de tension critique",
+                "Ajoute un système d'alerte immédiat lorsque la batterie descend sous le seuil critique pour préserver sa durée de vie.",
+                "Déclenchement fiable de l'alerte. Gestion des seuils paramétrables.");
+        creerExercice(solaire, 3, true, "Projet final : Dashboard de monitoring solaire frugal",
+                "Développe un tableau de bord web léger affichant la production solaire journalière et l'autonomie restante.",
+                "Interface basse consommation adaptée aux réseaux lents, code source disponible sur GitHub avec README.");
     }
 
     private Formation creerFormation(User formateur, String titre, String description, Niveau niveau, Domaine domaine) {

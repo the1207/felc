@@ -45,7 +45,10 @@ import { FormationResponse, OffreResponse } from '../../core/models/models';
                 ✨ Lancer le Diagnostic IA
               </a>
               <a routerLink="/formations" class="btn btn-outline btn-lg">
-                📚 Explorer les Formations Pratiques
+                📚 Formations Pratiques
+              </a>
+              <a routerLink="/impact" class="btn btn-outline btn-lg" style="border-color: rgba(16, 185, 129, 0.4); color: #6ee7b7;">
+                🌍 Impact Humanitaire ODD
               </a>
               <a routerLink="/certificats/verify" class="btn btn-outline btn-lg" style="border-color: rgba(245, 158, 11, 0.4); color: #fde68a;">
                 🛡️ Vérifier un Certificat
@@ -279,6 +282,64 @@ import { FormationResponse, OffreResponse } from '../../core/models/models';
             </div>
           </div>
 
+        </div>
+      </section>
+
+      <!-- Humanitarian Impact & UN SDGs Banner -->
+      <section style="background: rgba(6, 182, 212, 0.04); border-top: 1px solid rgba(6, 182, 212, 0.15); border-bottom: 1px solid rgba(6, 182, 212, 0.15); padding: 4.5rem 0;">
+        <div class="app-container">
+          <div style="text-align: center; max-width: 760px; margin: 0 auto 3.5rem;">
+            <span class="badge badge-cyber" style="margin-bottom: 0.75rem;">Impact Sociétal & Humanitaire</span>
+            <h2 style="font-size: 2.35rem; color: #ffffff; margin-bottom: 1rem;">
+              Candidat au Prix de l'Impact Numérique Durable
+            </h2>
+            <p style="color: #cbd5e1; font-size: 1.05rem; line-height: 1.6;">
+              FELC est alignée sur 5 Objectifs de Développement Durable (ODD 1, 4, 5, 8, 13) pour transformer la formation en émancipation économique réelle.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6" style="margin-bottom: 3rem;">
+            
+            <div class="card card-glow-emerald">
+              <div class="card-body">
+                <div style="font-size: 2rem; margin-bottom: 0.75rem;">🌍</div>
+                <h3 style="font-size: 1.2rem; color: #ffffff; margin-bottom: 0.5rem;">Inclusion & 5 Régions du Togo</h3>
+                <p style="color: #94a3b8; font-size: 0.88rem; line-height: 1.6;">
+                  42% des apprenants formés sont hors de la capitale (Kara, Sokodé, Kpalimé, Dapaong) grâce au Mode Frugal 2G/3G et à l'assistant vocal.
+                </p>
+              </div>
+            </div>
+
+            <div class="card card-glow-amber">
+              <div class="card-body">
+                <div style="font-size: 2rem; margin-bottom: 0.75rem;">🤝</div>
+                <h3 style="font-size: 1.2rem; color: #ffffff; margin-bottom: 0.5rem;">Bourses Tremplin & Diaspora</h3>
+                <p style="color: #94a3b8; font-size: 0.88rem; line-height: 1.6;">
+                  Financement direct de pass 4G (5 000 FCFA) et de PC portables reconditionnés pour les étudiants ayant validé leurs premiers exercices.
+                </p>
+              </div>
+            </div>
+
+            <div class="card card-glow-cyan">
+              <div class="card-body">
+                <div style="font-size: 2rem; margin-bottom: 0.75rem;">👩‍💻</div>
+                <h3 style="font-size: 1.2rem; color: #ffffff; margin-bottom: 0.5rem;">Femmes & Tech Togo</h3>
+                <p style="color: #94a3b8; font-size: 0.88rem; line-height: 1.6;">
+                  Programme d'encouragement actif pour atteindre 50% de femmes certifiées dans le développement web, l'IoT et les énergies renouvelables.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+          <div style="text-align: center; display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+            <a routerLink="/impact" class="btn btn-cyber">
+              Découvrir le Rapport d'Impact ODD ➔
+            </a>
+            <a routerLink="/bourses" class="btn btn-outline" style="border-color: rgba(245, 158, 11, 0.5); color: #fde68a;">
+              🤝 Parrainer une Bourse 4G
+            </a>
+          </div>
         </div>
       </section>
 

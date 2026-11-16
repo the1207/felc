@@ -2,6 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
+import { DataSaverService } from '../../core/services/data-saver.service';
 
 @Component({
   selector: 'app-navbar',
@@ -22,42 +23,62 @@ import { AuthService } from '../../core/services/auth.service';
               <span class="pulsing-dot" style="margin-left: 0.4rem;" title="Système opérationnel"></span>
             </div>
             <div style="font-size: 0.68rem; font-weight: 700; color: var(--neon-cyan); letter-spacing: 0.1em; text-transform: uppercase;">
-              Formation & Emploi
+              Formation & Emploi Togo
             </div>
           </div>
         </a>
 
         <!-- Desktop Navigation Links -->
-        <nav style="display: none; align-items: center; gap: 2rem;" class="md:flex">
-          <a routerLink="/formations" routerLinkActive="active-nav" style="font-family: var(--font-display); font-weight: 600; font-size: 0.95rem; color: #cbd5e1;">
+        <nav style="display: none; align-items: center; gap: 1.5rem;" class="md:flex">
+          <a routerLink="/formations" routerLinkActive="active-nav" style="font-family: var(--font-display); font-weight: 600; font-size: 0.92rem; color: #cbd5e1;">
             Formations
           </a>
-          <a routerLink="/offres" routerLinkActive="active-nav" style="font-family: var(--font-display); font-weight: 600; font-size: 0.95rem; color: #cbd5e1;">
+          <a routerLink="/offres" routerLinkActive="active-nav" style="font-family: var(--font-display); font-weight: 600; font-size: 0.92rem; color: #cbd5e1;">
             Offres & Missions
           </a>
-          <a routerLink="/forum" routerLinkActive="active-nav" style="font-family: var(--font-display); font-weight: 600; font-size: 0.95rem; color: #cbd5e1;">
+          <a routerLink="/forum" routerLinkActive="active-nav" style="font-family: var(--font-display); font-weight: 600; font-size: 0.92rem; color: #cbd5e1;">
             Forum
           </a>
-          <a routerLink="/certificats/verify" routerLinkActive="active-nav" style="font-family: var(--font-display); font-weight: 600; font-size: 0.95rem; color: #cbd5e1;">
-            Vérifier Certificat
+          <a routerLink="/bourses" routerLinkActive="active-nav" style="font-family: var(--font-display); font-weight: 600; font-size: 0.92rem; color: #f59e0b;">
+            🤝 Bourses
+          </a>
+          <a routerLink="/impact" routerLinkActive="active-nav" style="font-family: var(--font-display); font-weight: 600; font-size: 0.92rem; color: #10b981;">
+            🌍 Impact ODD
+          </a>
+          <a routerLink="/certificats/verify" routerLinkActive="active-nav" style="font-family: var(--font-display); font-weight: 600; font-size: 0.92rem; color: #cbd5e1;">
+            Certificats
           </a>
           <a 
             routerLink="/orientation" 
             routerLinkActive="active-nav" 
             class="badge badge-cyber"
-            style="padding: 0.45rem 1rem; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; cursor: pointer;"
+            style="padding: 0.35rem 0.85rem; font-size: 0.82rem; font-weight: 700; text-transform: uppercase; cursor: pointer;"
           >
             <span>✨</span> Moteur IA
           </a>
         </nav>
 
-        <!-- Right Side: User Status & Actions -->
-        <div style="display: flex; align-items: center; gap: 1rem;">
+        <!-- Right Side: Data Saver & User Status & Actions -->
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
           
+          <!-- Data Saver Mode Toggle Button (Africa Low-Bandwidth Mode) -->
+          <button 
+            type="button"
+            (click)="dataSaver.toggle()" 
+            [title]="dataSaver.isEnabled() ? 'Mode Économie Data actif. Cliquez pour désactiver.' : 'Activer le mode économie data & frugal (recommandé pour 2G/3G)'"
+            class="btn btn-sm"
+            [ngClass]="dataSaver.isEnabled() ? 'btn-accent' : 'btn-ghost'"
+            style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.78rem; padding: 0.35rem 0.65rem;"
+          >
+            <span>⚡</span>
+            <span *ngIf="dataSaver.isEnabled()">Frugal ({{ dataSaver.savedMegabytes() }} Mo)</span>
+            <span *ngIf="!dataSaver.isEnabled()">Éco Data</span>
+          </button>
+
           <ng-container *ngIf="authService.isLoggedIn(); else guestTpl">
             
             <!-- Quick links according to role -->
-            <div style="display: none; align-items: center; gap: 0.6rem;" class="md:flex">
+            <div style="display: none; align-items: center; gap: 0.5rem;" class="lg:flex">
               <a 
                 *ngIf="authService.userRole() === 'APPRENANT'" 
                 routerLink="/mes-formations" 
@@ -91,20 +112,20 @@ import { AuthService } from '../../core/services/auth.service';
                 routerLink="/admin" 
                 class="btn btn-primary btn-sm"
               >
-                ⚙️ Admin Console
+                ⚙️ Admin
               </a>
             </div>
 
             <!-- User Pill -->
-            <div style="display: flex; align-items: center; gap: 0.75rem; padding: 0.35rem 0.85rem; background: rgba(255, 255, 255, 0.05); border-radius: var(--radius-full); border: 1px solid rgba(255, 255, 255, 0.12); backdrop-filter: blur(12px);">
+            <div style="display: flex; align-items: center; gap: 0.65rem; padding: 0.35rem 0.75rem; background: rgba(255, 255, 255, 0.05); border-radius: var(--radius-full); border: 1px solid rgba(255, 255, 255, 0.12); backdrop-filter: blur(12px);">
               <div style="width: 2rem; height: 2rem; border-radius: 50%; background: var(--grad-cyber); color: white; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 800; font-family: var(--font-display);">
                 {{ authService.currentUser()?.prenom?.charAt(0) }}{{ authService.currentUser()?.nom?.charAt(0) }}
               </div>
               <div style="display: none;" class="md:block">
-                <div style="font-size: 0.85rem; font-weight: 700; color: #ffffff; line-height: 1.1;">
+                <div style="font-size: 0.82rem; font-weight: 700; color: #ffffff; line-height: 1.1;">
                   {{ authService.userFullName() }}
                 </div>
-                <div style="font-size: 0.68rem; font-weight: 700;" [ngClass]="getRoleBadgeClass(authService.userRole())">
+                <div style="font-size: 0.65rem; font-weight: 700;" [ngClass]="getRoleBadgeClass(authService.userRole())">
                   {{ authService.userRole() }}
                 </div>
               </div>
@@ -120,7 +141,7 @@ import { AuthService } from '../../core/services/auth.service';
           </ng-container>
 
           <ng-template #guestTpl>
-            <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <div style="display: flex; align-items: center; gap: 0.6rem;">
               <a routerLink="/auth/login" class="btn btn-ghost btn-sm">
                 Connexion
               </a>
@@ -148,6 +169,8 @@ import { AuthService } from '../../core/services/auth.service';
         <div style="display: flex; flex-direction: column; gap: 1.2rem;">
           <a routerLink="/formations" (click)="mobileMenuOpen.set(false)" style="font-weight: 600; color: #ffffff;">📚 Catalogue Formations</a>
           <a routerLink="/offres" (click)="mobileMenuOpen.set(false)" style="font-weight: 600; color: #ffffff;">💼 Offres & Missions Freelance</a>
+          <a routerLink="/bourses" (click)="mobileMenuOpen.set(false)" style="font-weight: 600; color: #f59e0b;">🤝 Bourses & Micro-Parrainage</a>
+          <a routerLink="/impact" (click)="mobileMenuOpen.set(false)" style="font-weight: 600; color: #10b981;">🌍 Impact ODD & Inclusion</a>
           <a routerLink="/forum" (click)="mobileMenuOpen.set(false)" style="font-weight: 600; color: #ffffff;">💬 Forum Communautaire</a>
           <a routerLink="/orientation" (click)="mobileMenuOpen.set(false)" style="font-weight: 600; color: var(--neon-cyan);">✨ Moteur d'Orientation IA</a>
           <a routerLink="/certificats/verify" (click)="mobileMenuOpen.set(false)" style="font-weight: 600; color: #ffffff;">🛡️ Vérifier un Certificat</a>
@@ -175,6 +198,7 @@ import { AuthService } from '../../core/services/auth.service';
 })
 export class NavbarComponent {
   public authService = inject(AuthService);
+  public dataSaver = inject(DataSaverService);
   public mobileMenuOpen = signal(false);
 
   toggleMobileMenu() {
@@ -190,3 +214,4 @@ export class NavbarComponent {
     }
   }
 }
+

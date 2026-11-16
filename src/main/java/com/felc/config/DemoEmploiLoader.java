@@ -72,6 +72,19 @@ public class DemoEmploiLoader implements CommandLineRunner {
                 "Mission freelance : API de gestion de commandes avec authentification JWT.", "Remote", true, null, 100000);
         creerOffre(entreprise, marketing, TypeOffre.MISSION, "Community manager pour une boutique en ligne",
                 "Animation de la page Facebook et Instagram pendant 3 mois.", "Lomé, Togo", false, null, 60000);
+
+        Domaine agriculture = domaineRepository.findByCodeIgnoreCase("AGRI").orElse(null);
+        Domaine energie = domaineRepository.findByCodeIgnoreCase("ENER").orElse(null);
+        if (agriculture != null) {
+            creerOffre(entreprise, agriculture, TypeOffre.MISSION, "Déploiement IoT d'irrigation solaire pour coopérative",
+                    "Mission rémunérée : installer et paramétrer un contrôleur d'arrosage automatique connecté pour un groupement de maraîchers.",
+                    "Kpalimé, Togo", false, null, 150000);
+        }
+        if (energie != null) {
+            creerOffre(entreprise, energie, TypeOffre.EMPLOI, "Technicien Solaire & Monitoring IoT Rural",
+                    "Installation et maintenance prédictive de micro-réseaux photovoltaïques dans les zones périurbaines et rurales.",
+                    "Kara / Sokodé, Togo", false, 0, 220000);
+        }
     }
 
     private void creerOffre(Entreprise entreprise, Domaine domaine, TypeOffre type, String titre,

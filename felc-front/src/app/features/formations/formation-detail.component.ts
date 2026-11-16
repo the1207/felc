@@ -5,6 +5,7 @@ import { RouterModule, Router } from '@angular/router';
 import { ApiService } from '../../core/services/api.service';
 import { AuthService } from '../../core/services/auth.service';
 import { ToastService } from '../../core/services/toast.service';
+import { VoiceService } from '../../core/services/voice.service';
 import {
   FormationDetailResponse,
   InscriptionResponse,
@@ -95,7 +96,7 @@ import {
         </div>
 
         <!-- Navigation Tabs -->
-        <div style="display: flex; gap: 1rem; margin-bottom: 2rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+        <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
           <button 
             (click)="activeTab = 'exercices'"
             [style.color]="activeTab === 'exercices' ? 'var(--neon-cyan)' : '#94a3b8'"
@@ -114,6 +115,58 @@ import {
           </button>
         </div>
 
+        <!-- Inclusive Audio Assistant Banner (Orality & Low-Literacy Inclusion) -->
+        <div *ngIf="voice.isSupported()" style="background: rgba(6, 182, 212, 0.07); border: 1px solid rgba(6, 182, 212, 0.25); border-radius: var(--radius-xl); padding: 0.85rem 1.25rem; margin-bottom: 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem;">
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <div style="width: 2.25rem; height: 2.25rem; border-radius: 50%; background: rgba(6, 182, 212, 0.2); display: flex; align-items: center; justify-content: center; font-size: 1.1rem;">
+              🎙️
+            </div>
+            <div>
+              <div style="font-weight: 700; color: #ffffff; font-size: 0.95rem; font-family: var(--font-display); display: flex; align-items: center; gap: 0.4rem;">
+                Assistant Vocal Inclusif & Oralité
+                <span class="badge badge-cyber" style="font-size: 0.68rem; padding: 0.15rem 0.5rem;">Accessibilité</span>
+              </div>
+              <div style="color: #94a3b8; font-size: 0.82rem;">
+                Écoutez les consignes d'exercices et les cours sans avoir à lire sur petit écran
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <span style="font-size: 0.8rem; color: #94a3b8;">Vitesse :</span>
+            <button 
+              type="button" 
+              (click)="speechRate.set(0.9)" 
+              class="btn btn-ghost btn-sm" 
+              [style.color]="speechRate() === 0.9 ? 'var(--neon-cyan)' : '#94a3b8'"
+              style="padding: 0.25rem 0.5rem; font-size: 0.8rem;"
+            >0.9x</button>
+            <button 
+              type="button" 
+              (click)="speechRate.set(1.0)" 
+              class="btn btn-ghost btn-sm" 
+              [style.color]="speechRate() === 1.0 ? 'var(--neon-cyan)' : '#94a3b8'"
+              style="padding: 0.25rem 0.5rem; font-size: 0.8rem;"
+            >1.0x</button>
+            <button 
+              type="button" 
+              (click)="speechRate.set(1.2)" 
+              class="btn btn-ghost btn-sm" 
+              [style.color]="speechRate() === 1.2 ? 'var(--neon-cyan)' : '#94a3b8'"
+              style="padding: 0.25rem 0.5rem; font-size: 0.8rem;"
+            >1.2x</button>
+
+            <button 
+              *ngIf="voice.isSpeaking()" 
+              (click)="arreterVocal()" 
+              class="btn btn-outline btn-sm" 
+              style="border-color: var(--neon-rose); color: var(--neon-rose); padding: 0.35rem 0.75rem;"
+            >
+              ⏹️ Stop Vocal
+            </button>
+          </div>
+        </div>
+
         <!-- Tab 1: Exercices & Soumissions -->
         <div *ngIf="activeTab === 'exercices'" style="display: flex; flex-direction: column; gap: 1.75rem;">
           
@@ -127,11 +180,25 @@ import {
                   <span *ngIf="!exo.projetFinal" class="badge badge-slate">Exercice Pratique</span>
                 </div>
 
-                <!-- Soumission status badge -->
-                <div *ngIf="getSoumission(exo.id) as sub">
-                  <span class="badge" [ngClass]="getSoumissionBadgeClass(sub.statut)">
-                    {{ sub.statut }} ({{ sub.note ?? 0 }}/100)
-                  </span>
+                <div style="display: flex; align-items: center; gap: 0.75rem;">
+                  <!-- Voice audio button -->
+                  <button 
+                    *ngIf="voice.isSupported()"
+                    type="button"
+                    (click)="toggleVocalExo(exo)"
+                    class="btn btn-ghost btn-sm"
+                    style="border: 1px solid rgba(6, 182, 212, 0.3); color: var(--neon-cyan); padding: 0.25rem 0.65rem; font-size: 0.8rem;"
+                  >
+                    <span *ngIf="voice.isSpeaking() && activeVoiceTarget() === ('exo_' + exo.id)">⏹️ Stop Audio</span>
+                    <span *ngIf="!voice.isSpeaking() || activeVoiceTarget() !== ('exo_' + exo.id)">🔊 Écouter l'exercice</span>
+                  </button>
+
+                  <!-- Soumission status badge -->
+                  <div *ngIf="getSoumission(exo.id) as sub">
+                    <span class="badge" [ngClass]="getSoumissionBadgeClass(sub.statut)">
+                      {{ sub.statut }} ({{ sub.note ?? 0 }}/100)
+                    </span>
+                  </div>
                 </div>
               </div>
 
@@ -214,11 +281,21 @@ import {
         <!-- Tab 2: Modules de Cours -->
         <div *ngIf="activeTab === 'modules'" style="display: flex; flex-direction: column; gap: 1.5rem;">
           <div *ngFor="let mod of formation()?.modules" class="card">
-            <div class="card-header">
+            <div class="card-header" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem;">
               <div style="display: flex; align-items: center; gap: 0.85rem;">
                 <span class="badge badge-primary">Module {{ mod.ordre }}</span>
                 <h3 style="font-size: 1.25rem; margin: 0; color: #ffffff;">{{ mod.titre }}</h3>
               </div>
+              <button 
+                *ngIf="voice.isSupported()"
+                type="button"
+                (click)="toggleVocalModule(mod)"
+                class="btn btn-ghost btn-sm"
+                style="border: 1px solid rgba(6, 182, 212, 0.3); color: var(--neon-cyan); padding: 0.25rem 0.65rem; font-size: 0.8rem;"
+              >
+                <span *ngIf="voice.isSpeaking() && activeVoiceTarget() === ('mod_' + mod.id)">⏹️ Stop Audio</span>
+                <span *ngIf="!voice.isSpeaking() || activeVoiceTarget() !== ('mod_' + mod.id)">🔊 Écouter le cours</span>
+              </button>
             </div>
             <div class="card-body">
               <div style="color: #cbd5e1; font-size: 1rem; line-height: 1.7; white-space: pre-wrap;">
@@ -290,6 +367,7 @@ export class FormationDetailComponent implements OnInit {
   public auth = inject(AuthService);
   private toast = inject(ToastService);
   private router = inject(Router);
+  public voice = inject(VoiceService);
 
   public formation = signal<FormationDetailResponse | null>(null);
   public inscription = signal<InscriptionResponse | null>(null);
@@ -298,6 +376,10 @@ export class FormationDetailComponent implements OnInit {
   public activeTab: 'exercices' | 'modules' = 'exercices';
   public inscribing = signal(false);
   public correctingIaId = signal<number | null>(null);
+
+  // Inclusive Voice accessibility state
+  public activeVoiceTarget = signal<string | null>(null);
+  public speechRate = signal<number>(1.0);
 
   // Modal
   public showSubmitModal = false;
@@ -427,6 +509,33 @@ export class FormationDetailComponent implements OnInit {
     if (formId) {
       this.verifierInscription(formId);
     }
+  }
+
+  toggleVocalExo(exo: ExerciceResponse) {
+    const targetKey = 'exo_' + exo.id;
+    if (this.voice.isSpeaking() && this.activeVoiceTarget() === targetKey) {
+      this.arreterVocal();
+    } else {
+      this.activeVoiceTarget.set(targetKey);
+      const speech = `Exercice ${exo.ordre} : ${exo.titre}. Consigne : ${exo.consigne}. Critères d'évaluation : ${exo.criteres}.`;
+      this.voice.speak(speech, 'fr-FR', this.speechRate());
+    }
+  }
+
+  toggleVocalModule(mod: ModuleResponse) {
+    const targetKey = 'mod_' + mod.id;
+    if (this.voice.isSpeaking() && this.activeVoiceTarget() === targetKey) {
+      this.arreterVocal();
+    } else {
+      this.activeVoiceTarget.set(targetKey);
+      const speech = `Module ${mod.ordre} : ${mod.titre}. ${mod.contenu}`;
+      this.voice.speak(speech, 'fr-FR', this.speechRate());
+    }
+  }
+
+  arreterVocal() {
+    this.voice.stop();
+    this.activeVoiceTarget.set(null);
   }
 
   getSoumissionBadgeClass(statut: string): string {

@@ -15,11 +15,17 @@ import { ForumComponent } from './features/forum/forum.component';
 import { PortfolioComponent } from './features/portfolio/portfolio.component';
 import { FormateurDashboardComponent } from './features/formateur/formateur-dashboard.component';
 import { AdminDashboardComponent } from './features/admin/admin-dashboard.component';
+import { ImpactComponent } from './features/impact/impact.component';
+import { BoursesComponent } from './features/bourses/bourses.component';
 import { authGuard, roleGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   
+  // High Impact & Inclusion
+  { path: 'impact', component: ImpactComponent },
+  { path: 'bourses', component: BoursesComponent },
+
   // Auth
   { path: 'auth/login', component: LoginComponent },
   { path: 'auth/register', component: RegisterComponent },

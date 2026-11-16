@@ -41,12 +41,13 @@ import { RouterModule } from '@angular/router';
 
           <!-- Column 3: Emploi & Entreprises -->
           <div>
-            <h4 style="color: #ffffff; font-size: 1rem; margin-bottom: 1.25rem; font-family: var(--font-display);">Marché & Recruteurs</h4>
+            <h4 style="color: #ffffff; font-size: 1rem; margin-bottom: 1.25rem; font-family: var(--font-display);">Marché & Solidarité</h4>
             <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.9rem;">
               <li><a routerLink="/offres" style="color: #94a3b8;">Offres d'Emploi & Stages</a></li>
               <li><a routerLink="/offres" [queryParams]="{ type: 'MISSION' }" style="color: #94a3b8;">Missions Freelance (FCFA)</a></li>
-              <li><a routerLink="/certificats/verify" style="color: #facc15; font-weight: 700;">🛡️ Vérification de Certificat</a></li>
-              <li><a routerLink="/auth/register" style="color: #94a3b8;">Espace Recruteur</a></li>
+              <li><a routerLink="/bourses" style="color: #f59e0b; font-weight: 700;">🤝 Bourses & Micro-Parrainage</a></li>
+              <li><a routerLink="/impact" style="color: #10b981; font-weight: 700;">🌍 Impact ODD & Inclusion Togo</a></li>
+              <li><a routerLink="/certificats/verify" style="color: #facc15;">🛡️ Vérification de Certificat</a></li>
             </ul>
           </div>
 

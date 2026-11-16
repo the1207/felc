@@ -259,8 +259,27 @@ frontend/src/app/
 ## 11. Scénario de Démonstration (Hackathon)
 
 1. **Orientation IA** : L'apprenant répond à quelques questions ciblées ; l'IA lui suggère un parcours réel adapté au marché togolais/francophone.
-2. **Apprentissage pratique** : Inscription à la formation, consultation des modules et consigne du premier exercice.
+2. **Apprentissage pratique & Assistant Vocal** : Inscription à la formation, consultation des modules et consigne du premier exercice avec option de lecture vocale pour l'inclusivité.
 3. **Correction automatique par IA** : Soumission d'un dépôt GitHub public. L'IA inspecte le code et attribue un feedback précis et une note en temps réel.
 4. **Certification & Preuve vérifiable** : Dès validation des exercices, le certificat `FELC-XXX-YYY` est délivré. Test de la page publique de vérification sans authentification.
 5. **Portfolio & Insertion professionnelle** : Le portfolio public est généré automatiquement. L'apprenant postule en un clic à une offre d'emploi ou mission freelance adaptée.
 6. **Entraide communautaire** : Démonstration du forum avec résolution de question par un expert/formateur.
+
+---
+
+## 12. Impact Humanitaire, ODD de l'ONU & Frugal Tech (Candidature Prix d'Impact Social)
+
+FELC a été conçue pour surmonter les contraintes matérielles réelles de l'Afrique de l'Ouest :
+
+1. **Accessibilité & Oralité Africaine (`VoiceService`)** :
+   - Assistant vocal intégré par synthèse Web Speech permettant l'écoute audio des cours et des consignes d'exercices d'un clic (vitesse réglable), pour surmonter les difficultés de lecture sur petit écran ou en mobilité.
+2. **Mode Économie Data & Frugal Tech (`DataSaverService`)** :
+   - Commutateur en un clic réduisant de plus de 80% l'empreinte graphique et les transferts réseau pour les apprenants connectés en 2G/3G/4G instable.
+3. **Bourses Tremplin & Micro-Parrainage Solidaire (`/bourses`)** :
+   - Financement direct et transparent de forfaits internet 4G (5 000 FCFA / 15 Go) et d'ordinateurs portables reconditionnés par la diaspora et les entreprises partenaires pour les apprenants méritants.
+4. **Alignement Direct avec 5 Objectifs de Développement Durable (ODD 2030)** :
+   - **ODD 4 (Éducation de qualité)** : Formations 100% pratiques sans QCM théoriques passifs.
+   - **ODD 8 (Travail décent & FCFA)** : Missions freelance et contrats payés directement en monnaie locale.
+   - **ODD 5 (Égalité des sexes)** : Programme *Femmes & Tech Togo* pour atteindre la parité dans les filières certifiantes.
+   - **ODD 1 (Pas de pauvreté)** : Fin du piston par la preuve technique vérifiable du portfolio.
+   - **ODD 13 (Climat & Sobriété)** : Filières pratiques en Agrotechnologie (irrigation solaire) et Micro-réseaux photovoltaïques ruraux.
