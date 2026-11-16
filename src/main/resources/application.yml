@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: felc-backend
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+server:
+  port: 8080
+
+app:
+  jwt:
+    # Au moins 32 caractères (HS256). À définir dans les variables d'environnement.
+    secret: ${JWT_SECRET}
+    expiration-ms: 86400000   # 24 h
+  cors:
+    allowed-origins: http://localhost:4200
+  ai:
+    api-key: ${ANTHROPIC_API_KEY:}
+    model: ${ANTHROPIC_MODEL:claude-sonnet-5-5}
+    seuil-validation: 70
+  github:
+    token: ${GITHUB_TOKEN:}
+  admin:
+    email: ${ADMIN_EMAIL:}
+    password: ${ADMIN_PASSWORD:}
