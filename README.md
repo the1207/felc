@@ -183,10 +183,10 @@ source .env
 Le serveur démarre sur `http://localhost:8080`.
 
 ### Comptes de démonstration pré-chargés (profil dev) :
-- **Admin** : `admin@felc.com` / `adminpassword123`
-- **Formateur** : `formateur@felc.com` / `formateur123`
-- **Entreprise** : `entreprise@felc.com` / `entreprise123`
-- **Apprenant** : `apprenant@felc.com` / `apprenant123`
+- **Admin** : `admin1` / `admin123`
+- **Formateur** : `formateur1` / `formateur123`
+- **Entreprise** : `entreprise1` / `entreprise123`
+- **Apprenant** : `apprenant1` / `apprenant123`
 
 ---
 
@@ -267,7 +267,15 @@ frontend/src/app/
 
 ---
 
-## 12. Impact Humanitaire, ODD de l'ONU & Frugal Tech (Candidature Prix d'Impact Social)
+## 12. Suivi des candidatures
+
+La page `/mes-candidatures` montre à l’apprenant connecté l’état de chaque envoi : reçue, vue, retenue ou non retenue. Les formations, le forum, l’orientation, l’entretien et l’export du CV restent ouverts sans quota.
+
+Le parcours guidé est sur `/parcours` : huit étapes dans l’ordre, cases enregistrées dans le navigateur, et une fiche de sept jours lisible à voix haute sans appel réseau. Chaque écran Angular est chargé à part, puis préchargé après l’accueil.
+
+---
+
+## 13. Impact Humanitaire, ODD de l'ONU & Frugal Tech (Candidature Prix d'Impact Social)
 
 FELC a été conçue pour surmonter les contraintes matérielles réelles de l'Afrique de l'Ouest :
 

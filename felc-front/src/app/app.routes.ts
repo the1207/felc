@@ -4,7 +4,7 @@ import { authGuard, roleGuard } from './core/guards/auth.guard';
 export const routes: Routes = [
   { path: '', title: 'Accueil', loadComponent: () => import('./features/home/home.component').then(m => m.HomeComponent) },
   { path: 'parcours', title: 'Parcours', loadComponent: () => import('./features/parcours/parcours.component').then(m => m.ParcoursComponent) },
-  { path: 'tarifs', title: 'Tarifs', loadComponent: () => import('./features/pricing/pricing.component').then(m => m.PricingComponent) },
+  { path: 'mes-candidatures', title: 'Mes candidatures', loadComponent: () => import('./features/candidatures/mes-candidatures.component').then(m => m.MesCandidaturesComponent), canActivate: [authGuard, roleGuard(['APPRENANT'])] },
   { path: 'interview-coach', title: 'Entretien', loadComponent: () => import('./features/interview/interview-coach.component').then(m => m.InterviewCoachComponent) },
   { path: 'cv-builder', title: 'CV', loadComponent: () => import('./features/cv/cv-builder.component').then(m => m.CvBuilderComponent) },
   { path: 'impact', title: 'Impact', loadComponent: () => import('./features/impact/impact.component').then(m => m.ImpactComponent) },

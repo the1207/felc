@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 import { DataSaverService } from '../../core/services/data-saver.service';
-import { PlanService } from '../../core/services/plan.service';
 
 @Component({
   selector: 'app-navbar',
@@ -43,8 +42,8 @@ import { PlanService } from '../../core/services/plan.service';
           <a routerLink="/forum" routerLinkActive="active-nav" style="font-family: var(--font-display); font-weight: 600; font-size: 0.92rem; color: #cbd5e1;">
             Forum
           </a>
-          <a routerLink="/tarifs" routerLinkActive="active-nav" style="font-family: var(--font-display); font-weight: 600; font-size: 0.92rem; color: #cbd5e1;">
-            Tarifs
+          <a routerLink="/mes-candidatures" routerLinkActive="active-nav" style="font-family: var(--font-display); font-weight: 600; font-size: 0.92rem; color: #cbd5e1;">
+            Candidatures
           </a>
           <a routerLink="/interview-coach" routerLinkActive="active-nav" style="font-family: var(--font-display); font-weight: 600; font-size: 0.92rem; color: #cbd5e1;">
             Entretien
@@ -95,6 +94,13 @@ import { PlanService } from '../../core/services/plan.service';
                 💼 Mon Portfolio
               </a>
               <a 
+                *ngIf="authService.userRole() === 'APPRENANT'" 
+                routerLink="/mes-candidatures" 
+                class="btn btn-outline btn-sm"
+              >
+                Suivi
+              </a>
+              <a 
                 *ngIf="authService.userRole() === 'FORMATEUR'" 
                 routerLink="/formateur/dashboard" 
                 class="btn btn-outline btn-sm"
@@ -126,9 +132,9 @@ import { PlanService } from '../../core/services/plan.service';
                 <div style="font-size: 0.82rem; font-weight: 700; color: #ffffff; line-height: 1.1;">
                   {{ authService.userFullName() }}
                 </div>
-                <a routerLink="/tarifs" style="font-size: 0.65rem; font-weight: 700;" [ngClass]="getRoleBadgeClass(authService.userRole())">
-                  {{ authService.userRole() }} · {{ plans.current().nom }}
-                </a>
+                <div style="font-size: 0.65rem; font-weight: 700;" [ngClass]="getRoleBadgeClass(authService.userRole())">
+                  {{ authService.userRole() }}
+                </div>
               </div>
               <button 
                 (click)="authService.logout()" 
@@ -145,9 +151,6 @@ import { PlanService } from '../../core/services/plan.service';
             <div style="display: flex; align-items: center; gap: 0.6rem;">
               <a routerLink="/auth/login" class="btn btn-ghost btn-sm">
                 Connexion
-              </a>
-              <a routerLink="/tarifs" class="btn btn-ghost btn-sm">
-                {{ plans.current().nom }}
               </a>
               <a routerLink="/auth/register" class="btn btn-cyber btn-sm">
                 Commencer
@@ -172,7 +175,7 @@ import { PlanService } from '../../core/services/plan.service';
       <div *ngIf="mobileMenuOpen()" style="border-top: 1px solid rgba(255, 255, 255, 0.1); background: rgba(11, 17, 32, 0.98); backdrop-filter: blur(24px); padding: 1.5rem;">
         <div style="display: flex; flex-direction: column; gap: 1.2rem;">
           <a routerLink="/parcours" (click)="mobileMenuOpen.set(false)" style="font-weight: 700; color: #ffffff;">Parcours</a>
-          <a routerLink="/tarifs" (click)="mobileMenuOpen.set(false)" style="font-weight: 700; color: #ffffff;">Tarifs — {{ plans.current().nom }}</a>
+          <a routerLink="/mes-candidatures" (click)="mobileMenuOpen.set(false)" style="font-weight: 700; color: #ffffff;">Mes candidatures</a>
           <a routerLink="/formations" (click)="mobileMenuOpen.set(false)" style="font-weight: 600; color: #ffffff;">Catalogue Formations</a>
           <a routerLink="/offres" (click)="mobileMenuOpen.set(false)" style="font-weight: 600; color: #ffffff;">💼 Offres & Missions Freelance</a>
           <a routerLink="/interview-coach" (click)="mobileMenuOpen.set(false)" style="font-weight: 600; color: var(--neon-cyan);">🎯 Simulateur d'Entretien IA</a>
@@ -205,7 +208,6 @@ import { PlanService } from '../../core/services/plan.service';
 export class NavbarComponent {
   public authService = inject(AuthService);
   public dataSaver = inject(DataSaverService);
-  public plans = inject(PlanService);
   public mobileMenuOpen = signal(false);
 
   toggleMobileMenu() {

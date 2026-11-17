@@ -1,7 +1,6 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { PlanService } from '../../core/services/plan.service';
 import { VoiceService } from '../../core/services/voice.service';
 
 interface Etape {
@@ -14,14 +13,14 @@ interface Etape {
 }
 
 const ETAPES: Etape[] = [
-  { id: 'compte', ordre: '01', titre: 'Ouvrir un compte Communauté', detail: 'Le compte gratuit suffit pour se former, prouver et postuler.', lien: '/auth/register', libelleLien: 'Créer le compte' },
-  { id: 'orientation', ordre: '02', titre: 'Choisir une direction', detail: 'Une orientation par mois en Communauté, ou le catalogue si le quota est utilisé.', lien: '/orientation', libelleLien: 'Lancer l’orientation' },
+  { id: 'compte', ordre: '01', titre: 'Ouvrir un compte', detail: 'Le compte suffit pour se former, prouver et postuler.', lien: '/auth/register', libelleLien: 'Créer le compte' },
+  { id: 'orientation', ordre: '02', titre: 'Choisir une direction', detail: 'Le diagnostic s’appuie sur le catalogue réel et les offres ouvertes.', lien: '/orientation', libelleLien: 'Lancer l’orientation' },
   { id: 'formation', ordre: '03', titre: 'Faire un exercice réel', detail: 'Une formation est une suite de livrables, pas une série de questions fermées.', lien: '/formations', libelleLien: 'Ouvrir le catalogue' },
   { id: 'preuve', ordre: '04', titre: 'Déposer le travail', detail: 'Le dépôt est relu. Au-dessus du seuil, la progression avance. En dessous, on reprend.', lien: '/mes-formations', libelleLien: 'Voir mes formations' },
   { id: 'certificat', ordre: '05', titre: 'Obtenir une preuve publique', detail: 'Le certificat a un code que n’importe qui peut vérifier, sans compte.', lien: '/certificats/verify', libelleLien: 'Vérifier un code' },
   { id: 'montrer', ordre: '06', titre: 'Rendre le portfolio visible', detail: 'Les projets validés s’y retrouvent. On le publie seulement quand on le décide.', lien: '/portfolio/me', libelleLien: 'Mon portfolio' },
-  { id: 'candidater', ordre: '07', titre: 'Postuler à une offre en FCFA', detail: 'Emploi ou mission. Le message de candidature s’appuie sur le portfolio.', lien: '/offres', libelleLien: 'Voir les offres' },
-  { id: 'entrainer', ordre: '08', titre: 'Répéter l’entretien et le CV', detail: 'Deux analyses d’entretien par mois en Communauté. L’export PDF du CV est dans Talent.', lien: '/interview-coach', libelleLien: 'S’entraîner' }
+  { id: 'candidater', ordre: '07', titre: 'Postuler, puis suivre la réponse', detail: 'Le dossier reste visible : reçu, vu, retenu ou écarté.', lien: '/mes-candidatures', libelleLien: 'Ouvrir le suivi' },
+  { id: 'entrainer', ordre: '08', titre: 'Répéter l’entretien et le CV', detail: 'L’analyse de réponse et l’export PDF du CV sont disponibles sans limite.', lien: '/interview-coach', libelleLien: 'S’entraîner' }
 ];
 
 const FICHE = [
@@ -46,7 +45,6 @@ const FICHE = [
           <h1 style="margin: 0.8rem 0 0.7rem;">Huit étapes, dans cet ordre.</h1>
           <p style="color: var(--text-muted); font-size: 1.05rem;">
             On ne postule pas avant d’avoir quelque chose à montrer.
-            Le plan {{ plans.current().nom }} est actif sur cet appareil.
             Cochez une étape quand elle est faite : la liste reste dans ce navigateur, même hors ligne.
           </p>
         </div>
@@ -84,10 +82,9 @@ const FICHE = [
             </ol>
             <p style="margin-top: 1.25rem; color: var(--text-dim);">
               Le mode économie de données, dans la barre du haut, enlève les effets graphiques sur une connexion lente.
-              Une bourse peut couvrir le forfait ou le plan Talent.
               <a routerLink="/bourses">Voir les bourses</a>
               ·
-              <a routerLink="/tarifs">Voir les offres</a>
+              <a routerLink="/mes-candidatures">Suivre une candidature</a>
             </p>
           </div>
         </section>
@@ -96,7 +93,6 @@ const FICHE = [
   `
 })
 export class ParcoursComponent {
-  readonly plans = inject(PlanService);
   readonly voice = inject(VoiceService);
   readonly etapes = ETAPES;
   readonly fiche = FICHE;

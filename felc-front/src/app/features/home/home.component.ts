@@ -31,14 +31,13 @@ import { FormationResponse, OffreResponse } from '../../core/models/models';
             </h1>
 
             <p style="font-size: 1.15rem; color: #94a3b8; line-height: 1.65; margin-bottom: 2rem; max-width: 680px; margin-left: auto; margin-right: auto;">
-              FELC accompagne un jeune francophone du premier exercice jusqu’à une candidature.
-              Le parcours Communauté est gratuit. Les outils d’accélération — orientation répétée, entretiens, CV exportable — sont dans les plans Talent et Organisation.
+              FELC accompagne un jeune francophone du premier exercice jusqu’à une candidature, puis jusqu’à la réponse de l’entreprise.
             </p>
 
             <div style="display: flex; align-items: center; justify-content: center; gap: 0.85rem; flex-wrap: wrap;">
               <a routerLink="/parcours" class="btn btn-cyber btn-lg">Suivre le parcours</a>
               <a routerLink="/auth/register" class="btn btn-outline btn-lg">Commencer gratuitement</a>
-              <a routerLink="/tarifs" class="btn btn-ghost btn-lg">Comparer les offres</a>
+              <a routerLink="/mes-candidatures" class="btn btn-ghost btn-lg">Suivre une candidature</a>
             </div>
 
           </div>
@@ -154,7 +153,7 @@ import { FormationResponse, OffreResponse } from '../../core/models/models';
           <div *ngIf="apiIndisponible() && formations().length === 0" class="card" style="margin-bottom: 1.5rem;">
             <div class="card-body">
               <h3 style="font-size: 1.15rem; margin-bottom: 0.4rem;">Le catalogue n’est pas joignable</h3>
-              <p style="color: var(--text-muted);">Le serveur des formations ne répond pas. Le parcours, la fiche de sept jours, les tarifs et le générateur de CV restent utilisables.</p>
+              <p style="color: var(--text-muted);">Le serveur des formations ne répond pas. Le parcours, la fiche de sept jours et le générateur de CV restent utilisables.</p>
               <a routerLink="/parcours" style="display: inline-block; margin-top: 0.8rem;">Continuer sur le parcours</a>
             </div>
           </div>
@@ -320,15 +319,14 @@ import { FormationResponse, OffreResponse } from '../../core/models/models';
       <section style="padding: 5rem 0; position: relative; border-top: 1px solid rgba(255, 255, 255, 0.08); background: radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.15) 0%, transparent 70%);">
         <div class="app-container" style="max-width: 750px; text-align: center;">
             <h2 style="font-size: 2.4rem; color: #ffffff; margin-bottom: 1rem;">
-            Le gratuit ouvre la porte. Le premium accélère la sortie.
+            Une candidature ne doit pas disparaître après l’envoi.
           </h2>
           <p style="font-size: 1.05rem; color: #94a3b8; margin-bottom: 2rem; line-height: 1.65;">
-            Communauté à 0 FCFA. Talent à 2 500 FCFA par mois pour l’orientation, les entretiens et le CV.
-            Organisation à 15 000 FCFA par mois pour une entreprise ou un formateur. Tarifs proposés, sans prélèvement dans cette version.
+            Le suivi indique si le dossier est reçu, vu, retenu ou écarté.
           </p>
           <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
-            <a routerLink="/tarifs" class="btn btn-cyber btn-lg">Voir les trois offres</a>
-            <a routerLink="/auth/register" class="btn btn-outline btn-lg">Créer un compte</a>
+            <a routerLink="/mes-candidatures" class="btn btn-cyber btn-lg">Ouvrir le suivi</a>
+            <a routerLink="/offres" class="btn btn-outline btn-lg">Voir les offres</a>
           </div>
         </div>
       </section>

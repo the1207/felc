@@ -78,10 +78,11 @@ import { OffreResponse, CandidatureResponse } from '../../core/models/models';
 
             <!-- Postuler CTA -->
             <div style="border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
-              <div *ngIf="existingCandidature(); else notAppliedTpl">
+              <div *ngIf="existingCandidature(); else notAppliedTpl" style="display: flex; align-items: center; gap: 0.85rem; flex-wrap: wrap;">
                 <span class="badge badge-success" style="font-size: 0.95rem; padding: 0.5rem 1rem;">
                   ✓ Vous avez postulé à cette offre (Statut : {{ existingCandidature()?.statut }})
                 </span>
+                <a routerLink="/mes-candidatures" class="btn btn-outline btn-sm">Voir le suivi</a>
               </div>
 
               <ng-template #notAppliedTpl>

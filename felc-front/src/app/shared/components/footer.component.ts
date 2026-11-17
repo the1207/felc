@@ -33,7 +33,7 @@ import { RouterModule } from '@angular/router';
             <h4 style="color: #ffffff; font-size: 1rem; margin-bottom: 1.25rem; font-family: var(--font-display);">Filières & Pratique</h4>
             <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.9rem;">
               <li><a routerLink="/parcours" style="color: #94a3b8;">Parcours en huit étapes</a></li>
-              <li><a routerLink="/tarifs" style="color: #94a3b8;">Offres Communauté, Talent, Organisation</a></li>
+              <li><a routerLink="/mes-candidatures" style="color: #94a3b8;">Suivi des candidatures</a></li>
               <li><a routerLink="/formations" style="color: #94a3b8;">Catalogue de Formations</a></li>
               <li><a routerLink="/orientation" style="color: var(--neon-cyan); font-weight: 700;">✨ Diagnostic & Orientation IA</a></li>
               <li><a routerLink="/mes-formations" style="color: #94a3b8;">Projets Pratiques & GitHub</a></li>
