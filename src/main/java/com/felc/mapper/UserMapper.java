@@ -20,6 +20,7 @@ public class UserMapper {
         user.setNom(request.nom().trim());
         user.setPrenom(request.prenom().trim());
         user.setRole(request.role());
+        user.setLocalisation(request.localisation());
         return user;
     }
 
@@ -28,6 +29,7 @@ public class UserMapper {
         entreprise.setUser(user);
         entreprise.setNom(request.nomEntreprise().trim());
         entreprise.setSecteur(request.secteur());
+        entreprise.setSiteWeb(request.siteWeb());
         return entreprise;
     }
 

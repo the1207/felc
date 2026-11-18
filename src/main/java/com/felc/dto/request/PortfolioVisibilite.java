@@ -1,3 +1,5 @@
 package com.felc.dto.request;
 
-public record PortfolioVisibilite(boolean visible) {}
+import com.fasterxml.jackson.annotation.JsonAlias;
+
+public record PortfolioVisibilite(@JsonAlias("portfolioPublic") boolean visible) {}

@@ -12,7 +12,9 @@ public record RegisterRequest(
         @NotBlank String nom,
         @NotBlank String prenom,
         @NotNull Role role,
+        String localisation,
         String nomEntreprise,
-        String secteur
+        String secteur,
+        String siteWeb
 ) {
 }
