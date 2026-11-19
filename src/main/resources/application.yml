@@ -23,7 +23,7 @@ app:
     secret: ${JWT_SECRET}
     expiration-ms: 86400000   # 24 h
   cors:
-    allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:4200,https://felc-front.felc.workers.dev,https://felcfront.felc.workers.dev}
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:4200,https://felc-front.felc.workers.dev,https://felcfront.felc.workers.dev,https://felc-front-production.up.railway.app}
   ai:
     api-key: ${ANTHROPIC_API_KEY:}
     model: ${ANTHROPIC_MODEL:claude-sonnet-5-5}
