@@ -77,6 +77,8 @@ public class SecurityConfig {
             }
         }
         originPatterns.add("https://*.trycloudflare.com");
+        originPatterns.add("https://*.pages.dev");
+        originPatterns.add("https://*.felc.workers.dev");
         configuration.setAllowedOriginPatterns(originPatterns);
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
